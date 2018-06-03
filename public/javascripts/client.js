@@ -2,6 +2,8 @@ const socket = io.connect();
 function $$(id) { return document.getElementById(id); }
 let authinfo;
 let logined;
+let user_cookie_name = 'expert_system_username';
+let pwd_cookie_name = 'expert_system_password';
 function load(path, fn){
     let reader = new FileReader();
     reader.onload = (evt) => {
@@ -24,14 +26,15 @@ socket.on('user:register', (res) => {
 });
 socket.on('user:login', (res) => {
     if (res === true){
-        alert("登录成功");
+        //alert("登录成功");
         change_state();
         cookie_helper.setCookie('expert_system_username', authinfo.user);
         cookie_helper.setCookie('expert_system_password', authinfo.password);
     }
     else if (res === false){
-        alert("登陆失败");
+        //alert("登陆失败");
         authinfo = null;
+        log_out();
     }
 });
 
@@ -61,8 +64,8 @@ function log_out(){
     logined = false ;
     authinfo = null ;
     $$('hello').innerHTML = "未登录" ;
-    cookie_helper.delCookie('expert_system_username');
-    cookie_helper.delCookie('expert_system_password');
+    cookie_helper.delCookie(user_cookie_name);
+    cookie_helper.delCookie(pwd_cookie_name);
 }
 
 $$('b3').onclick = () => {
@@ -84,6 +87,16 @@ $$('b3').onclick = () => {
         socket.emit('expert:upload',file);
     });
 };
-console.log(cookie_helper.getCookie('expert_system_username'));
-console.log(cookie_helper.getCookie('expert_system_password'));
 
+$$('logout').onclick = () => {
+    log_out();
+};
+
+console.log(cookie_helper.getCookie(user_cookie_name));
+console.log(cookie_helper.getCookie(pwd_cookie_name));
+authinfo = {
+    user : cookie_helper.getCookie(user_cookie_name),
+    password : cookie_helper.getCookie(pwd_cookie_name)
+};
+
+socket.emit('user:login', authinfo);

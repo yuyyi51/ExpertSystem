@@ -23,10 +23,7 @@ io.on('connection',(socket) => {
 });
 */
 
-app.use('/', express.static(__dirname + '/public'));
-app.get('/ppp', function (req, res) {
-    res.send('Hello World!');
-});
+app.use('/', express.static(__dirname + '/public/'));
 
 process.stdin.on('readable', () => {
     const chunk = process.stdin.read();
@@ -88,19 +85,30 @@ io.on('connection',(socket) => {
     socket.on('func:detail', (id) => {
 
     });
-    socket.on('expert:upload', (data) => {
-        console.log(data);
-        let filename = data.filename ;
-        let filebuffer = new Buffer(data.base64, 'base64');
-        let wstream = fs.createWriteStream(config.file_path + filename, {
-            flags : 'w',
-            encoding: 'binary'
+    socket.on('func:check_privilege', (data) => {
+        db.check_privilege(data.user, (res) => {
+            socket.emit('func:check_privilege', res);
         });
-        wstream.on('open', () => {
-            wstream.write(filebuffer);
-            wstream.end();
+    });
+    socket.on('expert:upload', (data) => {
+        let base = data.base64 ;
+        data.base64 = null ;
+        db.upload_file(data, (res) => {
+            if (res === -1)
+                return ;
+            let filename = res ;
+            let filebuffer = new Buffer(base, 'base64');
+            let wstream = fs.createWriteStream(config.file_path + filename, {
+                flags : 'w',
+                encoding: 'binary'
+            });
+            wstream.on('open', () => {
+                wstream.write(filebuffer);
+                wstream.end();
+            });
         });
         //TODO: 数据库记录
+
     });
 
 });
