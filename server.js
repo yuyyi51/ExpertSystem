@@ -101,7 +101,7 @@ io.on('connection',(socket) => {
     //////////////////////////////
     /*
     注册
-    data : { data : str, password : str }
+    data : { user : str, password : str }
      */
     socket.on('user:register', (data) => {
         log(data.user + " 尝试注册");
@@ -117,7 +117,7 @@ io.on('connection',(socket) => {
 
     /*
     登录
-    data : { data : str, password : str }
+    data : { user : str, password : str }
      */
     socket.on('user:login', (data) => {
         console.log(data.user + " 尝试登录");
@@ -128,6 +128,13 @@ io.on('connection',(socket) => {
                 log(data.user + " 登录失败");
             socket.emit('user:login', res);
         });
+
+    });
+    /*
+    购买积分
+    data : { user : str, points : int }
+     */
+    socket.on('user:buy_points', (data) => {
 
     });
 

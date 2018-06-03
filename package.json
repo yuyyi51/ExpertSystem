@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -16,5 +16,9 @@
     "easy_mysql": "^0.1.5",
     "spark-md5": "^3.0.0",
     "store": "^2.0.12"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
   }
 }
