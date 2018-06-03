@@ -48,6 +48,15 @@ socket.on('func:check_privilege', (res) => {
         alert("您没有上传权限");
     }
 });
+socket.on('expert:upload', (res) => {
+    if (res === true){
+        alert("上传成功");
+    }
+    else
+    {
+        alert("上传失败");
+    }
+});
 
 $$('upload_btn').onclick = () => {
     if (authinfo === null)

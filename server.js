@@ -43,6 +43,9 @@ http.listen(3000, () => {
 function calcSaltMd5(pass){
     return SparkMD5.hash(config.salt + pass + config.salt);
 }
+function log(str){
+    console.log(new Date().toLocaleString() + " : " + str);
+}
 
 io.on('connection',(socket) => {
     console.log('visitor connected.');
@@ -58,7 +61,12 @@ io.on('connection',(socket) => {
     data : { data : str, password : str }
      */
     socket.on('user:register', (data) => {
+        log(data.user + " 尝试注册");
         db.register(data.user, calcSaltMd5(data.password), (res) => {
+            if (res)
+                log(data.user + " 注册成功");
+            else
+                log(data.user + " 注册失败");
             socket.emit('user:register', res);
         });
 
@@ -69,8 +77,12 @@ io.on('connection',(socket) => {
     data : { data : str, password : str }
      */
     socket.on('user:login', (data) => {
-
+        console.log(data.user + " 尝试登录");
         db.login(data.user, calcSaltMd5(data.password), (res) => {
+            if (res)
+                log(data.user + " 登录成功");
+            else
+                log(data.user + " 登录失败");
             socket.emit('user:login', res);
         });
 
@@ -92,10 +104,13 @@ io.on('connection',(socket) => {
     });
     socket.on('expert:upload', (data) => {
         let base = data.base64 ;
+        let uname = data.uploader ;
         data.base64 = null ;
         db.upload_file(data, (res) => {
-            if (res === -1)
+            if (res === -1){
+                socket.emit('expert:upload', false);
                 return ;
+            }
             let filename = res ;
             let filebuffer = new Buffer(base, 'base64');
             let wstream = fs.createWriteStream(config.file_path + filename, {
@@ -106,8 +121,11 @@ io.on('connection',(socket) => {
                 wstream.write(filebuffer);
                 wstream.end();
             });
+            wstream.on('close', () => {
+                log(uname + " 上传了文件 " + data.filename + "，id为 " + res);
+                socket.emit('expert:upload', true);
+            });
         });
-        //TODO: 数据库记录
 
     });
 
