@@ -6,7 +6,7 @@
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <meta charset="UTF-8">
      <body>
-        <form class="Regisform" action="/action_page.php" autocomplete="off">
+        <form class="Regisform" autocomplete="off" id="regisform">
             <div class="Regisbox">
             <h1 class="Regish1">注册</h1>
                 <div class="textbox">
@@ -17,12 +17,24 @@
                     <label for="email"><b>邮箱：</b></label>
                     <input type="email" placeholder="请输入有效邮箱" name="email" id="email" value="" required>
                 </div>
-                    <input class="btn" type="submit" value="注册">
+                    <input class="btn" type="submit" id="register" value="注册">
             </div>  
         </form>
                 <div class="login">
-                    <span style="color: blue">已有账号</span>, <a href="../html/Login.html" style="color:red">立即登录&gt;&gt;</a>
+                    <span style="color: blue">已有账号</span>, <a href="Login.html" style="color:red">立即登录&gt;&gt;</a>   
+                </div>
+                <div class="back1">
+                    <a href="index.html" style="color:black">&lt;&lt;返回主页</a>
                 </div>
         </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- this script is provided by socket.io at runtime -->
+    <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
+    <script src="js/cookie_helper.js"></script>
+    <script src="js/register.js"></script>
     </head>
 </html>
