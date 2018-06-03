@@ -7,6 +7,7 @@ const config = require('./lib/config');
 const db = new sql(config);
 const SparkMD5 = require('spark-md5');
 const fs = require('fs');
+const cookie = require('cookie-parser');
 /*
 http.listen(3000, () => {
     console.log('listening on *:' + 3000);
@@ -23,7 +24,49 @@ io.on('connection',(socket) => {
 });
 */
 
+function getReqCookie(req, name)//取cookies函数
+{
+    var arr = req.cookies.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+    if (arr != null) {
+        return unescape(arr[2]);
+    } else {
+        return null;
+    }
+
+}
+
 app.use('/', express.static(__dirname + '/public/'));
+app.use(cookie());
+app.get('/download', (req, res) => {
+    let id = req.query.id ;
+    let path = config.file_path + id ;
+    if (id === null || id === undefined){
+        res.send("参数错误");
+        return;
+    }
+    let username = req.cookies.expert_system_username;
+    let password = req.cookies.expert_system_password;
+    if (username === null || password === null){
+        res.send("没有下载权限或文件不存在");
+        return;
+    }
+    db.login(username, calcSaltMd5(password), (result) => {
+        if (!result){
+            res.send("没有下载权限或文件不存在");
+            return;
+        }
+        db.select_file(id, (result) => {
+            if (result === null){
+                res.send("没有下载权限或文件不存在");
+                return;
+            }
+            //TODO: 加入购买记录检查
+            let filename = result[0].filename ;
+            console.log(filename);
+            res.download(path, filename);
+        });
+    });
+});
 
 process.stdin.on('readable', () => {
     const chunk = process.stdin.read();
