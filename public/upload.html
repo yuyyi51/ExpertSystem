@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/upload_style.css">
+    <title></title>
+
+    <style media="screen">
+    </style>
+  </head>
+  <body>
+    <div class="head-top">
+      <div class="head-top cr-top ">
+        <div class="top-width">
+          <div class="top-l">
+            <a href="#"><span class="logo-p">科技资源共享平台</span></a><!--跳转到主页面!-->
+          </div>
+          <div class="top-r">
+            <a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid">用户名</span></a><!--跳转到用户页面!-->
+            <!--跳转到用户页面!-->
+            <a id="logout" href="#" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="line-box">
+      <h1>
+        上传资源
+      </h1>
+    </div>
+    <div class="main">
+      <div class="div_write container">
+        <form  enctype="multipart/form-data" action="" method="post">
+          <table class="">
+            <tr>
+                <th><span class="necessary_blank">*</span><label class="sourcename" >资源名: </label></td>
+                <td colspan="2"><div><input class="form-control" type="text" name="sourcename" value=""></div></td>
+            </tr>
+            <tr>
+                  <th><span class="necessary_blank">*</span><label class="source-detail">摘要: </label></th>
+                  <td>
+                    <div>
+                      <textarea class="form-control" name="source" rows="8" cols="80"></textarea>
+                    </div>
+                  </td>
+            </tr>
+            <tr>
+                <th><span class="necessary_blank">*</span><label>分类: </label></th>
+                <td>
+                  <div>
+                    <input class="form-control" type="text">
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="necessary_blank">*</span><label>关键词: </label></th>
+                <td>
+                  <div>
+                    <input class="form-control" type="text">
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="necessary_blank">*</span><span class="point">积分: </span></th>
+                <td><div><input  type="number" name="point" value=""></div></td>
+            </tr>
+          </table>
+          <br>
+          <input class="uploadfile form-control" type="file" name="uploadfile" value="上传文件">
+          <input class="btn btn-primary btn-md upload-btn"class="submit"type="submit" value="上传">
+      </form>
+      </div>
+    </div>
+  </body>
+</html>

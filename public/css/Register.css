@@ -1,0 +1,95 @@
+
+body{
+margin: 0;
+background: rgba(0, 162, 255, 0.904);
+background-size: cover;
+
+}
+.Regisform{
+    position: relative;
+    top: 30px;
+    left: 15px;
+    
+}
+.Regisbox{
+    background-color:white;
+    position: absolute;
+    top:  200px;
+    left: 310px;
+    width: 500px;
+    height: 420px;
+    border: 1px solid rgba(0, 162, 255, 0.904);
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+}
+.Regish1{
+    position: relative;
+    bottom:10px;
+    left: 20px;
+    font-size: 40px;
+    padding: 2px 0;
+    margin-bottom: 2px 1 ;
+	font-weight: bold;
+	text-align: left;
+    color:rgb(238, 77, 13);
+
+}
+.textbox{
+    position: relative;
+    bottom: 10px;
+    right: 80px;
+    width: 450px;
+    height: 50px;
+    font-size: 18px;
+    padding: 15px ;
+    margin: 20px 1;
+    text-align: right;
+
+}
+
+.login{
+position: absolute;
+top: 580px;
+left: 630px;
+    font-size: 13px;
+    padding: 5px 1;
+    margin: 15px 1;
+    text-align: right;
+}
+.btn {
+    position: relative;
+    top: 125px;
+    left: 135px;
+    background-color: rgb(238, 77, 13); 
+    border: none;
+    color: white;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 6px
+    
+}
+input[type=text], select, textarea {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+input[type=password], select, textarea {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+input[type=email], select, textarea {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}

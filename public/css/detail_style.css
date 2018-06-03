@@ -1,0 +1,271 @@
+div.head-top{
+  height:60px;
+}
+div.cr-top{
+  font: 14px "\5FAE\8F6F\96C5\9ED1";
+  background: #2a8cd7;
+}
+div.top-width{
+  width: 100%;
+  height: 60px;
+}
+div.main{
+  clear: both;
+  padding-left: 50px;
+  padding-right:50px;
+  margin-top: 10px;
+}
+div.line{
+  line-height: 30px;
+  color: #013660;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0px 0px 25px 0px;
+  border-bottom: dotted 1px #E0E2E5;
+  text-align: center;
+  clear: both;
+}
+div .detail_header{
+  background-color: #00aeff;
+  color: white;
+  padding: 2px 10px;
+  height: 35px;
+  margin-top: 20px;
+}
+div.top-l{
+  float:left;
+  padding-left:20px;
+}
+div.top-r{
+  float: right;
+  padding-top: 20px;
+  padding-right: 70px;
+}
+div.top-r a{
+  color:white;
+  padding-right: 10px;
+}
+.glyph{
+  font-size: 20px;
+}
+span.logo-p{
+  display: inline-block;
+  color: #fff;
+  font-size: 24px;
+  line-height: 60px;
+  vertical-align: middle;
+  max-width: 200px;
+}
+div.line-box{
+  height: 60px;
+  border-bottom: 3px solid #2F8BD6;
+}
+div.line-box h1{
+  position: relative;
+  margin: 0 auto;
+  padding-left: 116px;
+  color: #333;
+  font: normal 24px/60px "Microsoft YaHei","微软雅黑";
+  float: left;
+  background: url("../img/h1Line.png") 105px 12px no-repeat scroll transparent;
+}
+div.search-pos{
+  margin-right: 0;
+  top: 70px;
+  left: 1000px;
+}
+div.col-lg-2{
+  float:right;
+  width: 350px;
+}
+div.input-group{
+  padding-top: 10px;
+}
+div.info-container{
+  padding: 50px 20px 5px 20px;
+}
+p.someinfo{
+  text-align: center;
+  margin-top: 10px;
+  clear: both;
+}
+div.sub{
+  position: absolute;
+  border: 1px solid black;
+  width: auto;
+  height: auto;
+  left: 35%;
+  padding: 50px;
+}
+#question{
+  text-align: center;
+}
+p.discribe{
+  margin-bottom: 0px;
+  padding-top: 15px;
+  font: 17px  "Microsoft Yahei"
+}
+h3.file_title{
+  line-height: 0px;
+  text-align: center;
+  font: 24px/1.6 "Microsoft Yahei";
+}
+div.btn_group{
+  padding-top: 30px;
+  text-align:center;
+}
+div.detail_info{
+  padding: 0px 150px 30px 150px;
+  margin-top: 15px;
+}
+div.info{
+  font: 16px/2 "Microsoft Yahei";
+  text-align: justify;
+/* height: 400px; */
+}
+#info span {
+  white-space: pre-line;
+}
+p.catalog_keyword , p.catalog_classify{
+  margin-bottom: 0px;
+}
+
+span.more{
+  font: 16px/2 "Microsoft Yahei";
+}
+span.reset{
+  font: 16px/2 "Microsoft Yahei";
+}
+.etc-text{
+  text-align: center;
+}
+div.footer{
+  min-width: 1200px;
+  background: #485362;
+  margin: auto;
+  margin-top: 40px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "微软雅黑";
+  text-align: center;
+  clear: both;
+  padding: 35px 0px 20px;
+  position: relative;
+  top: 300px;
+}
+div.confirm_buy{
+  position: fixed;
+  height: 200px;
+  width: 400px;
+  left: 36.5%;
+  top: 40%;
+  background-color: #e2e2e2;
+  visibility: hidden;
+  color: #0e0000;
+  font-family: "Microsoft Yahei";
+  border-radius: 20px;
+}
+.confirm_buy h3{
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 8px;
+}
+.confirm_buy h4{
+  text-align: center;
+  padding-top: 10px;
+
+}
+div.button-group{
+  text-align: center;
+}
+p.point-info{
+  text-align: center;
+  padding-top: 5px;
+}
+#btn1 a{
+  color:white;
+  text-decoration: none;
+}
+#btn3 a{
+  color:white;
+  text-decoration: none;
+}
+.home{
+  color: white;
+  font-size: 50px;
+  float: left;
+  padding-top: 10px;
+  padding-left: 80px;
+}
+.remove-btn{
+  float: right;
+  padding-right: 15px;
+  padding-top: 10px;
+  color: white;
+}
+.notice-lack-of-point{
+  position: fixed;
+  height: 175px;
+  width: 200px;
+  left: 43%;
+  top: 40%;
+  background-color: #cad1d6;
+/* visibility: hidden; */
+  color: #0e0000;
+  font-family: "Microsoft Yahei";
+  border-radius: 20px;
+}
+.notice-lack-of-point h3{
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid white;
+}
+.notice-lack-of-point p{
+  text-align: center;
+  font-size: 16.0px;
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.notice-lack-of-point button{
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+.exclamation-sign{
+  color: #ff0303;
+}
+.list-group{
+  position:fixed;
+  left:5px;
+  padding-top: 15px;
+}
+.move{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+  padding-right:35px;
+}
+.listhd{
+  background-color: #ededed;
+  padding-top: 10px;
+  font-size: 20px;
+  border: 1px solid #dadada;
+  border-radius: 2px;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px;
+}
+.listhd label{
+  font: bold 20px/38px "Microsoft Yahei";
+}
+a.list-group-item{
+  padding-right: 70px;
+  padding-bottom: 11px;
+  padding-top: 11px;
+  text-align: justify;
+}

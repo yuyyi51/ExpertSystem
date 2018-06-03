@@ -35,6 +35,7 @@ function getReqCookie(req, name)//取cookies函数
 
 }
 
+//app.use('/', express.static(__dirname + '/public/'));
 app.use('/', express.static(__dirname + '/public/'));
 app.use(cookie());
 app.get('/download', (req, res) => {
