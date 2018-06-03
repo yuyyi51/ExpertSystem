@@ -135,7 +135,15 @@ io.on('connection',(socket) => {
     data : { user : str, points : int }
      */
     socket.on('user:buy_points', (data) => {
-
+        db.buy_points(data.user, data.points, (res) => {
+            if (res){
+                log(data.user + " 购买成功，积分增加 " + data.points);
+            }
+            else{
+                log(data.user + "购买失败");
+            }
+            socket.emit('user:buy_points', res);
+        });
     });
 
     ///////////////////////////////
