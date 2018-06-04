@@ -165,6 +165,7 @@ io.on('connection',(socket) => {
         });
     });
     socket.on('expert:upload', (data) => {
+        console.log(data);
         let base = data.base64 ;
         let uname = data.uploader ;
         data.base64 = null ;

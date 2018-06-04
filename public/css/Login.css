@@ -29,7 +29,7 @@ background-size: cover;
     left: 20px;
     font-size: 40px;
     padding: 2px 0;
-    margin-bottom: 2px 1 ;
+    margin-bottom: 2px ;
 	font-weight: bold;
 	text-align: left;
     color:rgb(238, 77, 13);
@@ -43,7 +43,7 @@ background-size: cover;
     height: 30px;
     font-size: 15px;
     padding: 15px ;
-    margin: 20px 1;
+    margin: 20px 1px;
     text-align: right;
 
 }
@@ -53,9 +53,15 @@ position: absolute;
 top: 520px;
 left: 630px;
     font-size: 13px;
-    padding: 5px 1;
-    margin: 15px 1;
+    padding: 5px 1px;
+    margin: 15px 1px;
     text-align: right;
+}
+.back{
+position: absolute;
+top: 570px;
+left: 350px;
+font-size: 13px;
 }
 .btn {
     position: relative;
