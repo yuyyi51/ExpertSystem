@@ -115,7 +115,7 @@ io.on('connection',(socket) => {
      */
     socket.on('user:register', (data) => {
         log(data.user + " 尝试注册");
-        db.register(data.user, calcSaltMd5(data.password), (res) => {
+        db.register(data.user, calcSaltMd5(data.password), data.email, (res) => {
             if (res)
                 log(data.user + " 注册成功");
             else
