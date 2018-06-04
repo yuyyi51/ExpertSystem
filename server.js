@@ -196,8 +196,20 @@ io.on('connection',(socket) => {
     data : { topic : str, type : str, details : str, advicer str}
      */
     socket.on('user:feedback',(data) =>{
-        db.up_feedback(data);
-    })
+        db.up_feedback(data,(res)=>{
+            if (res==1){
+                log(data.advicer + " 提交反馈成功 ");
+            }
+            else{
+                if(res==2){
+                    log(data.advicer + " 已提交过相同反馈，提交失败 ");
+                }
+                else
+                    log(data.advicer + " 提交失败");
+            }
+            socket.emit('user:feedback', res);
+        });
+    });
     ///////////////////////////////
     //            功能
     ///////////////////////////////
