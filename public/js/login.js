@@ -13,7 +13,7 @@ socket.on('user:login', (res) => {
         //TODO: 回到主页？
         cookie_helper.setCookie(user_cookie_name, authinfo.user);
         cookie_helper.setCookie(pwd_cookie_name, authinfo.password);
-        window.location.href = 'index.html';
+        window.location.href = '/';
     }
     else if (res === false){
         alert("登陆失败");

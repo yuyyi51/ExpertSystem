@@ -59,6 +59,7 @@ $$('upload_form').onsubmit = (event) => {
     file.point = $$('points').value;
     file.title = $$('title').value;
     file.category = $$('category').value;
+    file.keywords = $$('keyword').value;
     load(files[0], (res) => {
         file.base64 = res.replace(/^data:.*?;base64,/, "");
         socket.emit('expert:upload',file);
