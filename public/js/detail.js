@@ -31,6 +31,9 @@ let authinfo;
 let user_cookie_name = 'expert_system_username';
 let pwd_cookie_name = 'expert_system_password';
 
+let need_points = null;
+let now_points = null ;
+
 function getUrlParms(name){
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -45,6 +48,16 @@ $$('logout').onclick = () => {
     cookie_helper.delCookie(pwd_cookie_name);
     window.location.href = '/';
     return false;
+};
+
+$$('confirmed_buy_btn').onclick = () => {
+    if(now_points < need_points){
+        cancel();
+        point_not_enough();
+    }
+    else {
+        socket.emit('user:buy_resource', {user: authinfo.user, id: getUrlParms('id')});
+    }
 };
 
 socket.on('user:login', (res) => {
@@ -76,11 +89,28 @@ socket.on('func:detail', (res) => {
     $$('confirm_need_points').innerHTML = res.required_points;
     $$('purchase_times').innerHTML = res.pur_times;
     $$('filesize').innerHTML = (res.filesize / 1024 ).toFixed(3) + 'kb';
+    need_points = res.required_points;
 });
 
 socket.on('user:get_points', (res) => {
     $$('confirm_remain_points').innerHTML = res ;
+    now_points = res ;
 });
+
+socket.on('user:buy_resource', (res) => {
+    if (res === -1){
+        alert("您已经购买过该资源");
+    }
+    else if (res === 1){
+        alert("购买成功");
+    }
+    else
+    {
+        alert("购买失败");
+    }
+    cancel();
+});
+
 
 
 if (getUrlParms('id') === null){

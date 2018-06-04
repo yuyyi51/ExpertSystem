@@ -150,6 +150,30 @@ io.on('connection',(socket) => {
         });
     });
 
+    /*
+    已购买返回-1，成功返回1，失败返回0
+     */
+    socket.on('user:buy_resource', (data) => {
+        console.log(data);
+        db.check_purchase(data.user, data.id, (res) => {
+            if (res){
+                //已购买
+                socket.emit('user:buy_resource', -1);
+                return;
+            }
+            db.buy_resource(data.user, data.id, (res) => {
+                if (res){
+                    //成功
+                    socket.emit('user:buy_resource', 1) ;
+                }
+                else
+                {
+                    socket.emit('user:buy_resource', 0) ;
+                }
+            });
+        });
+    });
+
     socket.on('user:get_points', (data) => {
         db.get_points(data.user, (res) => {
             socket.emit('user:get_points', res);
