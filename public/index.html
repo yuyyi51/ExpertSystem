@@ -24,15 +24,14 @@
         </li>
         <li>
             <a href="Register.html">注册</a>
-            <button id="testbu">test</button>
         </li>
     </ul>
 </div>
 <div class="search">
 
     <form action="search_result.html">
-        <input type="text" class="search-content" name="content" placeholder="输入您的搜索内容"  />
-        <input type="submit" value="搜索" class="search-btn" />
+        <input type="text" id="search_data" class="search-content" name="content" placeholder="输入您的搜索内容"  />
+        <input type="button" value="搜索" class="search-btn" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search_data').value" />
     </form>
 </div>
 </body>

@@ -123,7 +123,7 @@
         <div class="input-group">
           <input id="search-data" class="form-control" type="text" name="search-data" value="" placeholder="请输入搜索内容">
           <div class="input-group-btn">
-            <button  id="search_btn" class="btn btn-warning" type="submit" name="button" onclick="">搜索</button>
+            <button  id="search_btn" class="btn btn-warning" type="button" name="button" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search-data').value">搜索</button>
           </div>
         </div>
       </div>

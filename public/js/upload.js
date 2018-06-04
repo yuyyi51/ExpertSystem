@@ -68,6 +68,16 @@ $$('upload_form').onsubmit = (event) => {
     });
     return false;
 };
+socket.on('expert:upload', (res) => {
+    if (res){
+        alert("上传成功");
+        location.reload();
+    }
+    else
+    {
+        alert("上传失败，请稍后再试");
+    }
+});
 
 $$('logout').onclick = () => {
     cookie_helper.delCookie(user_cookie_name);
