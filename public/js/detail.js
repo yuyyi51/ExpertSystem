@@ -60,6 +60,10 @@ $$('confirmed_buy_btn').onclick = () => {
     }
 };
 
+$$('btn4').onclick = () => {
+    socket.emit('user:check_purchase', {user: authinfo.user, id: getUrlParms('id')});
+};
+
 socket.on('user:login', (res) => {
     if (res){
         $$('login').style.visibility = 'hidden';
@@ -109,6 +113,16 @@ socket.on('user:buy_resource', (res) => {
         alert("购买失败");
     }
     cancel();
+});
+
+socket.on('user:check_purchase', (res) => {
+    if (res){
+        window.location.href = '/download?id=' + getUrlParms('id');
+    }
+    else
+    {
+        alert("请先购买资源");
+    }
 });
 
 

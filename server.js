@@ -59,15 +59,21 @@ app.get('/download', (req, res) => {
             res.send("没有下载权限或文件不存在");
             return;
         }
-        db.select_file(id, (result) => {
-            if (result === null){
+        db.check_purchase(username, id, (result) => {
+            if (!result){
                 res.send("没有下载权限或文件不存在");
                 return;
             }
-            //TODO: 加入购买记录检查
-            let filename = result[0].filename ;
-            console.log(filename);
-            res.download(path, filename);
+            db.select_file(id, (result) => {
+                if (result === null){
+                    res.send("没有下载权限或文件不存在");
+                    return;
+                }
+                //TODO: 加入购买记录检查
+                let filename = result.filename ;
+                console.log(filename);
+                res.download(path, filename);
+            });
         });
     });
 });
@@ -177,6 +183,12 @@ io.on('connection',(socket) => {
     socket.on('user:get_points', (data) => {
         db.get_points(data.user, (res) => {
             socket.emit('user:get_points', res);
+        });
+    });
+    
+    socket.on('user:check_purchase', (data) => {
+        db.check_purchase(data.user, data.id , (res) => {
+            socket.emit('user:check_purchase', res);
         });
     });
     /*
