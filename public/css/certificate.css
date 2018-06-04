@@ -1,0 +1,173 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+li{
+    list-style-type: none;
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 2px grey solid;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: chocolate;
+}
+.head{
+    height: 120px;
+    padding-top:20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-image:url("../img/banner1.jpg");
+    color: chocolate;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+
+}
+.function{
+    float:left;
+
+}
+.userInfo{
+    float:right;
+}
+.search{
+    margin-top: 200px;
+    margin-left: 100px;
+    width: 649px;
+}
+.search-content{
+    float: left;
+    width: 500px;
+    height: 6px;
+    padding: 15px 0 15px 30px;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #fff;
+}
+.search-result{
+    height: 900px;;
+}
+.search-btn {
+    float: right;
+    width: 50px;
+    height: 40px;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    background: dodgerblue;
+    font-size: 12px;
+    font-weight: 100;
+    color: white;
+    cursor: pointer;
+}
+.footer{
+    position:absolute;
+    left:20px;
+    bottom:110px;
+    color: ivory;
+    font-family: "Microsoft Yahei";
+    font-weight: bold;
+}
+h1{
+    color:white;
+}
+.left{
+    position: fixed;
+    left: 0px;
+    top: 30%;
+}
+
+.container{
+    margin: 0px auto;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px white;
+    border-bottom:black;
+    height:73px;
+}
+.info{
+    height: 22px;
+    background-color: cornflowerblue;
+}
+.number{
+    width: 5%;
+    color: white;
+    text-align: center;
+}
+.username{
+    width: 15%;
+    color: white;
+    text-align: center;
+}
+.resourcename{
+    width:15%;
+    color: white;
+    text-align: center;
+}
+.description{
+    width:30%;
+    color: white;
+    text-align: center;
+}
+.operation{
+    width: 20%;
+    color: white;
+    text-align: center;
+}
+.bonus{
+    width: 15%;
+    color: white;
+    text-align: center;
+}
+.handdleh1{
+    height: 30px;
+    width: 60%;
+    margin-left: 20%;
+    color:rgb(238, 77, 13);
+    text-align:center;
+}
+
+.order{
+    padding-right: 70px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    text-align: justify;
+}
+.interface{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+.td{
+    text-align: center;
+    color: black;
+
+}
+.table{
+    color: black;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table td{
+    color:black;
+    text-align: center;
+}
+.table a{
+    color: dodgerblue;
+    text-align: center;
+}
+table a:hover{
+    color: chocolate;
+}
+.button1 a{
+    color: black;
+    width: 8%;
+}
+.button2 a{
+    color: #6e4f00;
+    width: 8%;
+}
