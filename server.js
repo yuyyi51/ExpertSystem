@@ -149,6 +149,12 @@ io.on('connection',(socket) => {
             socket.emit('user:buy_points', res);
         });
     });
+
+    socket.on('user:get_points', (data) => {
+        db.get_points(data.user, (res) => {
+            socket.emit('user:get_points', res);
+        });
+    });
     /*
     提交反馈
     data : { topic : str, type : str, details : str, advicer str}
@@ -163,7 +169,9 @@ io.on('connection',(socket) => {
 
     });
     socket.on('func:detail', (id) => {
-
+        db.select_file(id, (res) => {
+            socket.emit('func:detail', res);
+        });
     });
     socket.on('func:check_privilege', (data) => {
         db.check_privilege(data.user, (res) => {
@@ -196,5 +204,4 @@ io.on('connection',(socket) => {
         });
 
     });
-
 });

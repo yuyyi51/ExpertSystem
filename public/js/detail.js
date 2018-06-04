@@ -1,5 +1,8 @@
 /*
+id: login => 登录
+id: signup => 注册
 id: user => 到个人页面的<a>
+id: username => 用户名
 id: logout => 退出按钮
 id: search-data => 搜索框
 id: search_btn => 搜索按钮
@@ -36,18 +39,75 @@ function getUrlParms(name){
     return null;
 }
 
+$$('logout').onclick = () => {
+    authinfo = null ;
+    cookie_helper.delCookie(user_cookie_name);
+    cookie_helper.delCookie(pwd_cookie_name);
+    window.location.href = '/';
+    return false;
+};
+
+socket.on('user:login', (res) => {
+    if (res){
+        $$('login').style.visibility = 'hidden';
+        $$('signup').style.visibility = 'hidden';
+        $$('username').innerHTML = authinfo.user ;
+    }
+    else {
+        $$('user').parentNode.removeChild($$('user'));
+        $$('logout').parentNode.removeChild($$('logout'));
+    }
+});
+
+socket.on('func:detail', (res) => {
+    if (res === null){
+        alert("文件不存在");
+        window.location.href = '/error';
+        throw new Error("参数错误");
+    }
+    $$('resource_name').innerHTML = res.title;
+    $$('uploader').innerHTML = res.uploader;
+    $$('upload_time').innerHTML = String( new Date(res.upload_time)).split(' GM')[0];
+    $$('filename').innerHTML = res.filename;
+    $$('describe').innerHTML = res.description;
+    $$('keywords').innerHTML = res.keyword;
+    $$('catalog').innerHTML = res.category;
+    $$('need_points').innerHTML = res.required_points;
+    $$('confirm_need_points').innerHTML = res.required_points;
+    $$('purchase_times').innerHTML = res.pur_times;
+    $$('filesize').innerHTML = (res.filesize / 1024 ).toFixed(3) + 'kb';
+});
+
+socket.on('user:get_points', (res) => {
+    $$('confirm_remain_points').innerHTML = res ;
+});
+
+
 if (getUrlParms('id') === null){
     alert("参数错误");
     window.location.href = '/error';
     throw new Error("参数错误");
 }
 
-
-
 authinfo = {
     user : cookie_helper.getCookie(user_cookie_name),
     password : cookie_helper.getCookie(pwd_cookie_name)
 };
 
-socket.emit('user:login', authinfo);
+if (authinfo.user === null || authinfo.password === null)
+{
+    authinfo = null ;
+    $$('user').parentNode.removeChild($$('user'));
+    $$('logout').parentNode.removeChild($$('logout'));
+}
+else
+{
+    socket.emit('user:login', authinfo);
+}
+
+socket.emit('func:detail', getUrlParms('id'));
+if (authinfo !== null)
+    socket.emit('user:get_points', authinfo);
+
+
 
