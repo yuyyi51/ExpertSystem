@@ -38,6 +38,9 @@ function getReqCookie(req, name)//取cookies函数
 //app.use('/', express.static(__dirname + '/public/'));
 app.use('/', express.static(__dirname + '/public/'));
 app.use(cookie());
+app.get('/error', (req, res) => {
+    res.send("出现错误");
+});
 app.get('/download', (req, res) => {
     let id = req.query.id ;
     let path = config.file_path + id ;

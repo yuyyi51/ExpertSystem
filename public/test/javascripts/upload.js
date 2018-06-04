@@ -30,7 +30,7 @@ socket.on('func:check_privilege', (res) => {
     console.log(res);
     if (res === 1 || res === 2){
         //专家或管理员
-        let files = $$('upload').files;
+        let files = $$('uploadfile').files;
         let file = {} ;
         file.filename = files[0].name;
         file.size = files[0].size;

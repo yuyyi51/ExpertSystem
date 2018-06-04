@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/upload_style.css">
+    <link rel="stylesheet" href="css/upload.css">
     <title></title>
 
     <style media="screen">
@@ -18,7 +18,8 @@
             <a href="#"><span class="logo-p">科技资源共享平台</span></a><!--跳转到主页面!-->
           </div>
           <div class="top-r">
-            <a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid">用户名</span></a><!--跳转到用户页面!-->
+            <!--TODO: 设置用户界面的地址-->
+            <a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
             <!--跳转到用户页面!-->
             <a id="logout" href="#" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
           </div>
@@ -33,17 +34,17 @@
     </div>
     <div class="main">
       <div class="div_write container">
-        <form  enctype="multipart/form-data" action="" method="post">
+        <form  enctype="multipart/form-data" action="" id="upload_form">
           <table class="">
             <tr>
                 <th><span class="necessary_blank">*</span><label class="sourcename" >资源名: </label></td>
-                <td colspan="2"><div><input class="form-control" type="text" name="sourcename" value=""></div></td>
+                <td colspan="2"><div><input class="form-control" type="text" name="sourcename" id="title" value="" required></div></td>
             </tr>
             <tr>
-                  <th><span class="necessary_blank">*</span><label class="source-detail">摘要: </label></th>
+                  <th><span class="necessary_blank">*</span><label class="source-detail">描述: </label></th>
                   <td>
                     <div>
-                      <textarea class="form-control" name="source" rows="8" cols="80"></textarea>
+                      <textarea class="form-control" name="source" rows="8" cols="80" id="description" required></textarea>
                     </div>
                   </td>
             </tr>
@@ -51,7 +52,7 @@
                 <th><span class="necessary_blank">*</span><label>分类: </label></th>
                 <td>
                   <div>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" id="category" required>
                   </div>
                 </td>
             </tr>
@@ -59,20 +60,29 @@
                 <th><span class="necessary_blank">*</span><label>关键词: </label></th>
                 <td>
                   <div>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" id="keyword" required>
                   </div>
                 </td>
             </tr>
             <tr>
                 <th><span class="necessary_blank">*</span><span class="point">积分: </span></th>
-                <td><div><input  type="number" name="point" value=""></div></td>
+                <td><div><input  type="number" name="point" value="" id="points" required></div></td>
             </tr>
           </table>
           <br>
-          <input class="uploadfile form-control" type="file" name="uploadfile" value="上传文件">
-          <input class="btn btn-primary btn-md upload-btn"class="submit"type="submit" value="上传">
+          <input class="uploadfile form-control" type="file" name="uploadfile" id="uploadfile" value="上传文件" required>
+          <input class="btn btn-primary btn-md upload-btn"class="submit"type="submit" id="upload_btn" value="上传">
       </form>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- this script is provided by socket.io at runtime -->
+    <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
+    <script src="js/cookie_helper.js"></script>
+    <script src="js/upload.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/detail_style.css">
+    <link rel="stylesheet" href="css/detail.css">
     <title></title>
     <style>
     </style>
@@ -29,32 +29,50 @@
     //  txt.style.whiteSpace="nowrap";
     //}
     function click_buysource(){
-      var n=document.getElementById("confirm_buy");
-      var body=document.getElementById("body");
-      var btn1,btn2,btn3;
-      btn1=document.getElementById("btn1");
-      btn2=document.getElementById("btn2");
-      btn3=document.getElementById("btn3");
-      n.style.visibility="visible";
-      body.style.opacity=0.3;
-      n.style.opacity=1;
-      btn1.disabled=true;
-      btn2.disabled=true;
-      btn3.disabled=true;
+        let n=document.getElementById("confirm_buy");
+        n.style.visibility = "visible";
+        let body = document.getElementById("body");
+        body.style.opacity = "0.3";
+        let btn1,btn2,btn3,btn4;
+        btn1=document.getElementById("btn1");
+        btn2=document.getElementById("btn2");
+        btn3=document.getElementById("btn3");
+        btn4=document.getElementById("btn4");
+        btn1.disabled=true;
+        btn2.disabled=true;
+        btn3.disabled=true;
+        btn4.disabled=true;
+
     }
 
     function cancel(){
-      var n=document.getElementById("confirm_buy");
-      var body=document.getElementById("body");
-      var btn1,btn2,btn3;
-      btn1=document.getElementById("btn1");
-      btn2=document.getElementById("btn2");
-      btn3=document.getElementById("btn3");
-      n.style.visibility="hidden";
-      body.style.opacity=1;
-      btn1.disabled=false;
-      btn2.disabled=false;
-      btn3.disabled=false;
+        let n=document.getElementById("confirm_buy");
+        let body=document.getElementById("body");
+        n.style.visibility="hidden";
+        body.style.opacity=1;
+        btn1=document.getElementById("btn1");
+        btn2=document.getElementById("btn2");
+        btn3=document.getElementById("btn3");
+        btn4=document.getElementById("btn4");
+        btn1.disabled=false;
+        btn2.disabled=false;
+        btn3.disabled=false;
+        btn4.disabled=false;
+    }
+
+    function cancel2() {
+        let n = document.getElementById("not_enough_points");
+        let body=document.getElementById("body");
+        n.style.visibility="hidden";
+        body.style.opacity=1;
+        btn1=document.getElementById("btn1");
+        btn2=document.getElementById("btn2");
+        btn3=document.getElementById("btn3");
+        btn4=document.getElementById("btn4");
+        btn1.disabled=false;
+        btn2.disabled=false;
+        btn3.disabled=false;
+        btn4.disabled=false;
     }
     </script>
   </head>
@@ -74,7 +92,7 @@
           <!--如果已登入 显示!-->
           <a id="user" href="到个人页面"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid">用户名</span></a><!--跳转到用户页面!-->
           <!--退出-->
-          <a id="logout" href="到主页面" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
+          <a id="logout" href="index.html" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
           </div>
         </div>
       </div>
@@ -102,40 +120,41 @@
           <label>知识节点</label>
         </div>
         <a class="list-group-item" href="#file_title"><li>基本信息</li></a>
-        <a class="list-group-item" href="#discribe"><li>摘要</li></a>
+        <a class="list-group-item" href="#discribe"><li>描述</li></a>
         <a class="list-group-item" href="#catalog_keyword"><li>关键词</li></a>
         <a class="list-group-item" href="#catalog_classify"><li>分类</li></a>
       </div>
       <div class="info-container">
         <div id="file_title">
-          <h3 class="file_title">资源名</h3>
+          <h3 class="file_title" id="resource_name">资源名</h3>
         </div>
         <div class="line"></div>
         <p class="someinfo">
-          <strong>上传者: </strong><a href=" "><span class="uploader-name">上传者名</span></a>
+          <strong>上传者: </strong><a href=" " id="uploader_href"><span class="uploader-name" id="uploader">上传者名</span></a>
         </p>
         <p class="someinfo">
-        <strong>上传时间: </strong><span class="upload-date">2018/5/28 10:24</span>
+        <strong>上传时间: </strong><span class="upload-date" id="upload_time">时间</span>
+        </p>
+        <p class="someinfo">
+          <strong>文件名: </strong><span id="filename">文件名</span>
         </p>
       </div>
 
       <div class="detail_info">
-        <p id="discribe" class="discribe">
-          <label>摘要: </label>
+        <p class="discribe">
+          <label>描述: </label>
         </p>
         <div class="info">
           <p id="info">
-            <span>
-              近几年来,所谓的Web2.0网站和技术发展迅速,彻底改变了互联网的面貌。Web2.0网站强调自由创作和用户参与,数以亿计的网民在新一代的Web平台上创造了海量的生动有趣的内容。越来越丰富的互联网信息资源使得用户难以在浩如烟海的数据中找到其真正感兴趣的信息,因此,各种各样的信息检索和搜索引擎技术得到了广泛的关注和巨大的发展。现有的Web信息检索系统主要是搜索引擎,但是已有的搜索引擎还是存在着很多不足,主要表现为：一是Web2.0网站的内容被收录的比例很少；二是给出的结果不能反映当前网络的流行信息和热点话题；三是检索结果没有针对用户的兴趣爱好来排序和筛选。针对以上几点问题,论文所要探讨的就是如何在Web2.0环境下,帮助用户根据自己的兴趣爱好从Web2.0的信息海洋里获取流行的热点话题。论文主要针对Web信息检索中的Web2.0社区网络热点发现以及个性化推荐进行了研究,以更好地改善用户的检索体验。为了达到这个目标,论文首先提出了研究的框架,然后探讨各个重要组成模块的关键技术,并针对Web2.0网站的特点提出相应改进的算法与模型。论文的主要内容和创新之处为：1.针对Web2.0网站信息组织和层次结构的特点,抽象出面向对象的分布式深度爬虫(Object-Oriented Distributed Deep Crawler,简称OODDC),使用较经济的带宽来与真实数据保持同步,大大提高了爬虫的工作效率和采集数据的实时性。实验结果也证实了面向对象的分布式实时深度爬虫的优点。2.详细研究了Web2.0网站数据格式和内容标签(Tag)化的特点,在传统Web信息抽取算法基础上,结合向量空间模型(VSM)和实体识别算法,采用少数几个Tag及其权重组成的向量来描述网页、图片、视频和博客等Web对象信息本体的特征,建立了基于Tag描述的统一信息表示模型。3.基于Tag描述的统一信息表示模型,改进了已有的话题检测与跟踪(TDT)算法,用快速的聚类算法检测和聚合网络话题；同时结合用户反馈对于信息流行程度的影响,提出一种有效的网络话题热度评估算法(HotRank),对所收集的话题计算其热度,作为排序和推荐的依据。实践表明,以相关度和热度共同作为检索结果的排序依据更加吸引用户。4.针对现有用户兴趣模型的缺陷,提出一种基于主题的在线用户兴趣模型。此模型自动提取用户访问网页的主题,并随时根据用户兴趣的变化以非常小的代价更新。该用户兴趣模型可以运用到各种个性化服务中。实验证明基于此模型的个性化推荐系统具有良好的性能。
-            </span>
+            <span id="describe">描述</span>
           </p>
           <p id="catalog_keyword" class="catalog_keyword">
             <label for="catalog_keyword">关键词: </label>
-            <span>爬虫; 数据保护; 信息;</span>
+            <span id="keywords">关键词</span>
           </p>
           <p id="catalog_classify" class="catalog_classify">
             <label for="catalog_classify">分类: </label>
-            <span>期刊</span>
+            <span id="catalog">期刊</span>
           </p>
           <!--<span class="more">
             <a id="moreinfo" onclick="">更多</a>
@@ -148,44 +167,54 @@
         </div>
       </div>
       <div class="btn_group">
+        <!--TODO: 修改购买积分的跳转页面-->
         <button id="btn1" class="btn btn-primary btn-lg"><a  href="#">购买积分</a></button><!--购买之后 display:none!-->
         <button id="btn2" class="btn btn-primary btn-lg" onclick="click_buysource()">购买资源</button>
-        <button id="btn3" class="btn btn-primary btn-lg"><a  href="#">提交反馈</a></button>
+        <button id="btn3" class="btn btn-primary btn-lg"><a  href="Feedback.html">提交反馈</a></button>
         <button id="btn4" class="btn btn-success btn-lg" onclick="">下载</button><!--购买了之后显示？display=!-->
       </div>
       <br>
       <p class="etc-text">
-        <strong>所需积分: </strong><span>10</span> | <strong>购买次数: </strong><span>10</span> | <strong>文件大小: </strong><span class="file-size">1MB</span>
+        <strong>所需积分: </strong><span id="need_points">10</span> | <strong>购买次数: </strong><span id="purchase_times">10</span> | <strong>文件大小: </strong><span class="file-size" id="filesize">1MB</span>
       </p>
     </div>
     <div class="footer">
     <!--  <p style="text-align:center;">Copyright@2018</p>!-->
     </div>
     </div>
-    <div id="confirm_buy" class="confirm_buy">
+    <div id="confirm_buy" class="confirm_buy" style="visibility: hidden">
       <a class="remove-btn" onclick="cancel()" ><span class="glyphicon glyphicon-remove"></span></a>
       <h3>提示</h3>
       <h4>确定要购买吗?</h4>
       <p class="point-info">
-        <span>所需积分:</span><span>10</span>
-        <span>剩余积分:</span><span>10</span>
+        <span>所需积分:</span><span id="confirm_need_points">10</span>
+        <span>剩余积分:</span><span id="confirm_remain_points">10</span>
       </p>
       <form action="" method="post">
       <div class="button-group">
-        <button class="btn btn-success" type="button" name="button" onclick="">确定</button>
+        <button class="btn btn-success" type="button" name="button" onclick="" id="confirmed_buy">确定</button>
         <button class="btn btn-default" type="button" name="button" onclick="cancel()">取消</button>
       </div>
       </form>
     </div>
     <!--积分不够的时候显示提示!-->
-    <div class="notice-lack-of-point panel panel-default">
-      <a class="remove-btn" onclick="" ><span class="glyphicon glyphicon-remove"></span></a>
+    <div class="notice-lack-of-point panel panel-default" style="visibility: hidden" id="not_enough_points">
+      <a class="remove-btn" onclick="cancel2()" ><span class="glyphicon glyphicon-remove"></span></a>
       <h3>提示</h3>
       <p>
         <span class="exclamation-sign glyphicon glyphicon-exclamation-sign"></span>
         对不起，您的积分不够!
       </p>
-      <button class="btn btn-default"type="button" name="button" onclick="">确定</button>
+      <button class="btn btn-default"type="button" name="button" onclick="cancel2()">确定</button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- this script is provided by socket.io at runtime -->
+    <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
+    <script src="js/cookie_helper.js"></script>
+    <script src="js/detail.js"></script>
   </body>
 </html>

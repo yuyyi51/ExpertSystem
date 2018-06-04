@@ -57,6 +57,12 @@ left: 630px;
     margin: 15px 1;
     text-align: right;
 }
+.back1{
+position: absolute;
+top: 615px;
+left: 355px;
+font-size: 13px;
+}
 .btn {
     position: relative;
     top: 125px;
@@ -92,4 +98,10 @@ input[type=email], select, textarea {
     border: 1px solid #ccc;
     border-radius: 8px;
     resize: vertical;
+}
+.back{
+    position: absolute;
+    bottom: 60px;
+    left: 500px;
+    font-size: 18px;
 }
