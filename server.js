@@ -59,15 +59,21 @@ app.get('/download', (req, res) => {
             res.send("没有下载权限或文件不存在");
             return;
         }
-        db.select_file(id, (result) => {
-            if (result === null){
+        db.check_purchase(username, id, (result) => {
+            if (!result){
                 res.send("没有下载权限或文件不存在");
                 return;
             }
-            //TODO: 加入购买记录检查
-            let filename = result[0].filename ;
-            console.log(filename);
-            res.download(path, filename);
+            db.select_file(id, (result) => {
+                if (result === null){
+                    res.send("没有下载权限或文件不存在");
+                    return;
+                }
+                //TODO: 加入购买记录检查
+                let filename = result.filename ;
+                console.log(filename);
+                res.download(path, filename);
+            });
         });
     });
 });
@@ -149,6 +155,42 @@ io.on('connection',(socket) => {
             socket.emit('user:buy_points', res);
         });
     });
+
+    /*
+    已购买返回-1，成功返回1，失败返回0
+     */
+    socket.on('user:buy_resource', (data) => {
+        console.log(data);
+        db.check_purchase(data.user, data.id, (res) => {
+            if (res){
+                //已购买
+                socket.emit('user:buy_resource', -1);
+                return;
+            }
+            db.buy_resource(data.user, data.id, (res) => {
+                if (res){
+                    //成功
+                    socket.emit('user:buy_resource', 1) ;
+                }
+                else
+                {
+                    socket.emit('user:buy_resource', 0) ;
+                }
+            });
+        });
+    });
+
+    socket.on('user:get_points', (data) => {
+        db.get_points(data.user, (res) => {
+            socket.emit('user:get_points', res);
+        });
+    });
+    
+    socket.on('user:check_purchase', (data) => {
+        db.check_purchase(data.user, data.id , (res) => {
+            socket.emit('user:check_purchase', res);
+        });
+    });
     /*
     提交反馈
     data : { topic : str, type : str, details : str, advicer str}
@@ -175,7 +217,9 @@ io.on('connection',(socket) => {
 
     });
     socket.on('func:detail', (id) => {
-
+        db.select_file(id, (res) => {
+            socket.emit('func:detail', res);
+        });
     });
     socket.on('func:check_privilege', (data) => {
         db.check_privilege(data.user, (res) => {
@@ -208,5 +252,4 @@ io.on('connection',(socket) => {
         });
 
     });
-
 });

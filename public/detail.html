@@ -45,6 +45,22 @@
 
     }
 
+    function point_not_enough() {
+        let n=document.getElementById("not_enough_points");
+        n.style.visibility = "visible";
+        let body = document.getElementById("body");
+        body.style.opacity = "0.3";
+        let btn1,btn2,btn3,btn4;
+        btn1=document.getElementById("btn1");
+        btn2=document.getElementById("btn2");
+        btn3=document.getElementById("btn3");
+        btn4=document.getElementById("btn4");
+        btn1.disabled=true;
+        btn2.disabled=true;
+        btn3.disabled=true;
+        btn4.disabled=true;
+    }
+
     function cancel(){
         let n=document.getElementById("confirm_buy");
         let body=document.getElementById("body");
@@ -87,12 +103,12 @@
           </div>
           <div class="top-r">
           <!--如果没有登入 显示!-->
-          <a  id="login" href=""><span class="glyph glyphicon glyphicon-log-in"></span> <span class="loginw">登录</span></a>
-          <a  id="signup" href=""><span class="glyph glyphicon glyphicon-lock"></span><span>注册</span></a>
+          <a  id="login" href="Login.html"><span class="glyph glyphicon glyphicon-log-in"></span> <span class="loginw">登录</span></a>
+          <a  id="signup" href="Register.html"><span class="glyph glyphicon glyphicon-lock"></span><span>注册</span></a>
           <!--如果已登入 显示!-->
-          <a id="user" href="到个人页面"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid">用户名</span></a><!--跳转到用户页面!-->
+          <a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
           <!--退出-->
-          <a id="logout" href="index.html" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
+          <a id="logout" href="#" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
           </div>
         </div>
       </div>
@@ -107,7 +123,7 @@
         <div class="input-group">
           <input id="search-data" class="form-control" type="text" name="search-data" value="" placeholder="请输入搜索内容">
           <div class="input-group-btn">
-            <button  id="search_btn" class="btn btn-warning" type="submit" name="button" onclick="">搜索</button>
+            <button  id="search_btn" class="btn btn-warning" type="button" name="button" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search-data').value">搜索</button>
           </div>
         </div>
       </div>
@@ -168,9 +184,9 @@
       </div>
       <div class="btn_group">
         <!--TODO: 修改购买积分的跳转页面-->
-        <button id="btn1" class="btn btn-primary btn-lg"><a  href="#">购买积分</a></button><!--购买之后 display:none!-->
+        <button id="btn1" class="btn btn-primary btn-lg" onclick="window.location.href='service.html'">购买积分</button><!--购买之后 display:none!-->
         <button id="btn2" class="btn btn-primary btn-lg" onclick="click_buysource()">购买资源</button>
-        <button id="btn3" class="btn btn-primary btn-lg"><a  href="Feedback.html">提交反馈</a></button>
+        <button id="btn3" class="btn btn-primary btn-lg" onclick="window.location.href='Feedback.html'">提交反馈</button>
         <button id="btn4" class="btn btn-success btn-lg" onclick="">下载</button><!--购买了之后显示？display=!-->
       </div>
       <br>
@@ -192,7 +208,7 @@
       </p>
       <form action="" method="post">
       <div class="button-group">
-        <button class="btn btn-success" type="button" name="button" onclick="" id="confirmed_buy">确定</button>
+        <button class="btn btn-success" type="button" name="button" onclick="" id="confirmed_buy_btn">确定</button>
         <button class="btn btn-default" type="button" name="button" onclick="cancel()">取消</button>
       </div>
       </form>

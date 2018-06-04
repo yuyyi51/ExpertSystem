@@ -31,6 +31,8 @@ socket.on('user:login', (res) => {
         authinfo = null ;
         cookie_helper.delCookie(user_cookie_name);
         cookie_helper.delCookie(pwd_cookie_name);
+        alert("请先登录");
+        window.location.href = '/Login.html';
     }
 });
 socket.on('func:check_privilege', (res) => {
@@ -66,6 +68,16 @@ $$('upload_form').onsubmit = (event) => {
     });
     return false;
 };
+socket.on('expert:upload', (res) => {
+    if (res){
+        alert("上传成功");
+        location.reload();
+    }
+    else
+    {
+        alert("上传失败，请稍后再试");
+    }
+});
 
 $$('logout').onclick = () => {
     cookie_helper.delCookie(user_cookie_name);
