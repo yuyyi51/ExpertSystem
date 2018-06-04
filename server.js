@@ -146,7 +146,13 @@ io.on('connection',(socket) => {
             socket.emit('user:buy_points', res);
         });
     });
-
+    /*
+    提交反馈
+    data : { topic : str, type : str, details : str, advicer str}
+     */
+    socket.on('user:feedback',(data) =>{
+        db.up_feedback(data);
+    })
     ///////////////////////////////
     //            功能
     ///////////////////////////////
