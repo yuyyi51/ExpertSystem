@@ -10,7 +10,6 @@ socket.on('connect',() => {
 socket.on('user:login', (res) => {
     if (res === true){
         alert("登录成功");
-        //TODO: 回到主页？
         cookie_helper.setCookie(user_cookie_name, authinfo.user);
         cookie_helper.setCookie(pwd_cookie_name, authinfo.password);
         window.location.href = '/';

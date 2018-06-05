@@ -19,19 +19,19 @@
             </li>
         </ul>
     </div>
-    <div class="left">
+    <!--div class="left">
         <ul class="lefttitle">
             <li>按照以下方式排序</li>
         </ul>
         <ul class="order">
-            <a href="#"> <li>作品名称</li></a>
+            <a href="#"><li>作品名称</li></a>
             <a href="#"><li>作者</li></a>
             <a href="#"><li>发布时间</li></a>
         </ul>
-    </div>
+    </div-->
     <div class="container">
 
-        <div class="search-result">
+        <div class="search-result" id="result">
             <ul class="info">
                 <li class="name">
                     题名(点击查看资源详情)
@@ -43,25 +43,13 @@
                     发表时间
                 </li>
             </ul>
-            <ul class="content">
-                <li class="name">
-                    <a href="detail.html">这里放题目名称</a>
-                </li >
-                <li class="author">
-                    作者在这
-                </li>
-                <li class="time">
-                    发表时间
-                </li>
-            </ul>
         </div>
         <div class="Pagenumber">
-            <a href="#"><div class="num"> 1</div></a>
-            <a href="#"><div class="num">2</div></a>
-            <a href="#"><div class="num">3</div></a>
-
-            <a href="#"><div class="num">4</div></a>
-            <a href="#"><div class="num">5</div></a>
+            <a href="#" onclick="change_page(1)"><div class="num"> 1</div></a>
+            <a href="#" onclick="change_page(2)"><div class="num">2</div></a>
+            <a href="#" onclick="change_page(3)"><div class="num">3</div></a>
+            <a href="#" onclick="change_page(4)"><div class="num">4</div></a>
+            <a href="#" onclick="change_page(5)"><div class="num">5</div></a>
         </div>
     </div>
     <div class="footer">
@@ -74,5 +62,30 @@
             </li>
         </ul>
     </div>
+    <script>
+        function getUrlParmsH(key){
+            // 获取参数
+            var url = window.location.search;
+            // 正则筛选地址栏
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            // 匹配目标参数
+            var result = url.substr(1).match(reg);
+            //返回参数值
+            return result ? decodeURIComponent(result[2]) : null;
+        }
+        function change_page(i) {
+            content = getUrlParmsH('content');
+            window.location.href = '/search_result.html?content=' + content + '&page=' + i ;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- this script is provided by socket.io at runtime -->
+    <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
+    <script src="js/cookie_helper.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>

@@ -69,7 +69,6 @@ app.get('/download', (req, res) => {
                     res.send("没有下载权限或文件不存在");
                     return;
                 }
-                //TODO: 加入购买记录检查
                 let filename = result.filename ;
                 console.log(filename);
                 res.download(path, filename);
@@ -115,7 +114,7 @@ io.on('connection',(socket) => {
      */
     socket.on('user:register', (data) => {
         log(data.user + " 尝试注册");
-        db.register(data.user, calcSaltMd5(data.password), (res) => {
+        db.register(data.user, calcSaltMd5(data.password), data.email, (res) => {
             if (res)
                 log(data.user + " 注册成功");
             else
@@ -213,8 +212,16 @@ io.on('connection',(socket) => {
     ///////////////////////////////
     //            功能
     ///////////////////////////////
+    /*
+    data : { keywords : str[] , page : int }
+     */
     socket.on('func:search', (data) => {
-
+        //TODO: 服务器搜索功能
+        let pagecount = 10 ;
+        let start = (data.page-1) * pagecount;
+        db.search(data.keywords, start, pagecount, (res) => {
+            socket.emit('func:search', res);
+        });
     });
     socket.on('func:detail', (id) => {
         db.select_file(id, (res) => {
