@@ -209,6 +209,41 @@ io.on('connection',(socket) => {
             socket.emit('user:feedback', res);
         });
     });
+    /*
+    data : {
+        user : str,
+        name : str,
+        id_number : str,
+        description : str,
+        files : [{base: str, filename: str}]
+    }
+     */
+    socket.on('user:certify', (data) => {
+        //console.log(data);
+        let user = data.user ;
+        let id_number = data.id_number;
+        let description = data.description;
+        let name = data.name;
+        let files = data.files;
+        db.add_certify_request(user, name, id_number, description, (res) => {
+            if (res === null)
+            {
+                socket.emit('user:certify', false);
+                return;
+            }
+            let wstream = fs.createWriteStream(config.auth_path + res, {
+                flags : 'w',
+                encoding: 'binary'
+            });
+            wstream.on('open', () => {
+                wstream.write(JSON.stringify(files));
+                wstream.end();
+            });
+            wstream.on('close', () => {
+                socket.emit('user:certify', true);
+            });
+        });
+    });
     ///////////////////////////////
     //            功能
     ///////////////////////////////

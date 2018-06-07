@@ -31,6 +31,12 @@ function split_with_spaces(s){
     return s.split(/[ ]+/);
 }
 
+function timeFormatter(value) {
+
+    var da = new Date(value.replace("/Date(", "").replace(")/" , "").split( "+")[0]);
+    return da.getFullYear() + "-" + ((da.getMonth() + 1) < 10 ? "0" + (da.getMonth() + 1):(da.getMonth() + 1))+ "-" + (da.getDate() < 10 ? "0" + da.getDate():da.getDate()) + " " + (da.getHours()<10?"0"+da.getHours():da.getHours()) + ":" + (da.getMinutes()<10?"0"+da.getMinutes():da.getMinutes()) + ":" + (da.getSeconds()<10?"0"+da.getSeconds():da.getSeconds());
+}
+
 //console.log(split_with_spaces(clearString(getUrlParms('content'))));
 
 function new_result(data){
@@ -61,12 +67,24 @@ function new_result(data){
     l2.innerHTML = data.username;
     let l3 = document.createElement('li');
     l3.className = 'time';
-    l3.innerHTML = String( new Date(data.upload_time)).split(' GM')[0];
+    l3.innerHTML = timeFormatter(data.upload_time);
+    //l3.innerHTML = String( new Date(data.upload_time)).split(' GM')[0];
     u.append(l1);
     u.append(l2);
     u.append(l3);
     return u;
 }
+
+socket.on('user:login', (res) => {
+    if (res){
+        //登录成功
+    }
+    else {
+        //失败
+        cookie_helper.delCookie(user_cookie_name);
+        cookie_helper.delCookie(pwd_cookie_name);
+    }
+});
 
 socket.on('func:search', (res) => {
     //TODO: 获取搜索结果后

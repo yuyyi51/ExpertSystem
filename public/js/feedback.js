@@ -14,6 +14,14 @@ if (username !== null && password !== null)
     };
     socket.emit('user:login', authinfo);
 }
+socket.on('user:login', (res) => {
+    if (!res){
+        cookie_helper.delCookie(user_cookie_name);
+        cookie_helper.delCookie(pwd_cookie_name);
+        alert("请先登录");
+        window.location.href = '/Login.html';
+    }
+});
 socket.on('user:feedback',(res) => {
     if (res==1){
         alert("反馈成功，请等待管理员处理");
