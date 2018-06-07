@@ -294,4 +294,14 @@ io.on('connection',(socket) => {
         });
 
     });
+    socket.on('admin:get_feedback', () => {
+        db.get_feedback((res) => {
+            socket.emit('admin:get_feedback', res);
+        });
+    });
+    socket.on('admin:change_feedback_state', (id) => {
+        db.change_feedback_state(id, (res) => {
+            socket.emit('admin:change_feedback_state', res);
+        });
+    });
 });

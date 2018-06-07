@@ -82,7 +82,7 @@ socket.on('expert:upload', (res) => {
 $$('logout').onclick = () => {
     cookie_helper.delCookie(user_cookie_name);
     cookie_helper.delCookie(pwd_cookie_name);
-    window.location.href = '/index.html';
+    window.location.href = '/';
     return false;
 };
 
