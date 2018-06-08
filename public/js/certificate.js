@@ -35,7 +35,7 @@ function createNewResult(data){
     button1.className = 'button1';
     button1.innerHTML = '附加资料';
     button1.onclick = () => {
-        socket.emit('admin:get_request_file',data.request_id);
+        window.location.href = '/download_cert?id=' + data.request_id;
     };
     let button2 = document.createElement('button');
     button2.type = 'button';
@@ -110,12 +110,6 @@ socket.on('admin:get_auth_request', (res) => {
     }
     for (let i = 0; i < res.length; ++i){
         createNewResult(res[i]);
-    }
-});
-
-socket.on('admin:get_request_file', (res) => {
-    for (let i = 0 ; i < res.length ; ++i){
-        downloadFile(res[i].filename, res[i].base);
     }
 });
 

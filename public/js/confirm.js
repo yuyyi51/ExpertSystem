@@ -21,7 +21,7 @@ function load_next(files, pos, result ,fn){
     let path = files[pos];
     load(path, (res) => {
         result.push({
-            base: res,
+            base: res.replace(/^data:.*?;base64,/, ""),
             filename: path.name
         });
         load_next(files, ++pos, result, fn);

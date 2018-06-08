@@ -8,6 +8,7 @@ const db = new sql(config);
 const SparkMD5 = require('spark-md5');
 const fs = require('fs');
 const cookie = require('cookie-parser');
+const admZip = require('adm-zip');
 /*
 http.listen(3000, () => {
     console.log('listening on *:' + 3000);
@@ -77,6 +78,34 @@ app.get('/download', (req, res) => {
     });
 });
 
+app.get('/download_cert', (req, res) => {
+    let id = req.query.id ;
+    let path = config.auth_path + id + '.zip' ;
+    if (id === null || id === undefined){
+        res.send("参数错误");
+        return;
+    }
+    let username = req.cookies.expert_system_username;
+    let password = req.cookies.expert_system_password;
+    if (username === null || password === null){
+        res.send("没有下载权限或文件不存在");
+        return;
+    }
+    db.login(username, calcSaltMd5(password), (result) => {
+        if (!result){
+            res.send("没有下载权限或文件不存在");
+            return;
+        }
+        db.check_privilege(username, (result) => {
+            if (result !== 2){
+                res.send("没有下载权限或文件不存在");
+                return;
+            }
+            let filename = id + '.zip';
+            res.download(path,filename);
+        });
+    });
+});
 process.stdin.on('readable', () => {
     const chunk = process.stdin.read();
     if (chunk !== null) {
@@ -231,6 +260,19 @@ io.on('connection',(socket) => {
                 socket.emit('user:certify', false);
                 return;
             }
+            let zip = new admZip();
+
+            for (let i = 0; i < files.length ; ++i){
+                let file = files[i];
+                let filebuffer = new Buffer(file.base, 'base64');
+                let splited = file.filename.split('.');
+                let p = splited[splited.length-1];
+                zip.addFile(i.toString() + '.' + p, filebuffer);
+
+            }
+            zip.writeZip(config.auth_path + res + ".zip");
+            socket.emit('user:certify', true);
+            /*
             let wstream = fs.createWriteStream(config.auth_path + res, {
                 flags : 'w',
                 encoding: 'binary'
@@ -242,6 +284,7 @@ io.on('connection',(socket) => {
             wstream.on('close', () => {
                 socket.emit('user:certify', true);
             });
+            */
         });
     });
     ///////////////////////////////
@@ -308,12 +351,6 @@ io.on('connection',(socket) => {
         db.get_auth_request((res) => {
             socket.emit('admin:get_auth_request', res);
         });
-    });
-    socket.on('admin:get_request_file', (id) => {
-        let path = config.auth_path + id;
-        let file = fs.readFileSync(path, 'utf8');
-        let result = JSON.parse(file);
-        socket.emit('admin:get_request_file', result);
     });
     socket.on('admin:accept_request', (id) => {
 
