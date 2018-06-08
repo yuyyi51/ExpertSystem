@@ -236,7 +236,7 @@ io.on('connection',(socket) => {
                 encoding: 'binary'
             });
             wstream.on('open', () => {
-                wstream.write(JSON.stringify(files));
+                wstream.write(JSON.stringify(files), 'utf8');
                 wstream.end();
             });
             wstream.on('close', () => {
@@ -303,5 +303,22 @@ io.on('connection',(socket) => {
         db.change_feedback_state(id, (res) => {
             socket.emit('admin:change_feedback_state', res);
         });
+    });
+    socket.on('admin:get_auth_request', () => {
+        db.get_auth_request((res) => {
+            socket.emit('admin:get_auth_request', res);
+        });
+    });
+    socket.on('admin:get_request_file', (id) => {
+        let path = config.auth_path + id;
+        let file = fs.readFileSync(path, 'utf8');
+        let result = JSON.parse(file);
+        socket.emit('admin:get_request_file', result);
+    });
+    socket.on('admin:accept_request', (id) => {
+
+    });
+    socket.on('admin:reject_request', (id) => {
+
     });
 });

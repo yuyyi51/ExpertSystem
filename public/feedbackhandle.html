@@ -13,8 +13,8 @@
         <ul class="function">
             <li>
                 <form action="search_result.html">
-                    <input type="text" class="search-content" name="content" placeholder="请输入您想要搜索内容"  />
-                    <input type="submit" value="搜索" class="search-btn" />
+                    <input type="text" class="search-content" name="content" id="search_data" placeholder="请输入您想要搜索内容"  />
+                    <input type="button" value="搜索" class="search-btn" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search_data').value"/>
                 </form>
             </li>
         </ul>
