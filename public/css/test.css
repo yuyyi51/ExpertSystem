@@ -1,0 +1,30 @@
+@charset "utf-8";
+#total{
+	display: table-row;	
+}
+
+.total-detail{
+	display: table-cell;
+	border: 1px solid black;
+	width: 150px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.total-detail p{
+	margin-top: 0px;
+	padding: 0px;
+	border: 1px solid black;	
+}
+#avatar{
+	width: 180px;
+	height: 180px;
+	border: 1px solid black;	
+}
+
+img{
+	width: 75%;
+	height: 75%;	
+}
+
+
