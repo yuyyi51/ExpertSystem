@@ -352,10 +352,28 @@ io.on('connection',(socket) => {
             socket.emit('admin:get_auth_request', res);
         });
     });
-    socket.on('admin:accept_request', (id) => {
-
+    socket.on('admin:accept_request', (id,name,fn) => {
+        db.certificate_pass(id,name,(res)=>{
+            if(res) {
+                log("成功提升用户"+name+"成为专家用户");
+                fn(true);
+            }
+            else {
+                log("未能提升用户"+name+"成为专家用户");
+                fn(false);
+            }
+        });
     });
-    socket.on('admin:reject_request', (id) => {
-
+    socket.on('admin:reject_request', (id,name,fn) => {
+        db.certificate_refuse(id,(res)=>{
+            if(res) {
+                log("成功拒绝用户"+name+"的认证申请");
+                fn(true);
+            }
+            else {
+                log("未能拒绝用户"+name+"的认证申请");
+                fn(false);
+            }
+        });
     });
 });

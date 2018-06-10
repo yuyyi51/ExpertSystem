@@ -42,16 +42,26 @@ function createNewResult(data){
     button2.className = 'button1';
     button2.innerHTML = '通过';
     button2.onclick = () => {
-        socket.emit('admin:accept_request', data.request_id);
-        $$('result').removeChild(button2.parentNode.parentNode);
+        socket.emit('admin:accept_request', data.request_id,data.username,(res)=>{
+            if(res) {
+                alert("成功提升用户"+data.username+"成为专家用户");
+                $$('result').removeChild(button2.parentNode.parentNode);
+            }
+            else alert("操作失败");
+        });
     };
     let button3 = document.createElement('button');
     button3.type = 'button';
     button3.className = 'button2';
     button3.innerHTML = '拒绝';
     button3.onclick = () => {
-        socket.emit('admin:reject_request', data.request_id);
-        $$('result').removeChild(button3.parentNode.parentNode);
+        socket.emit('admin:reject_request', data.request_id,data.username,(res)=>{
+            if(res) {
+                alert("已经拒绝该申请");
+                $$('result').removeChild(button2.parentNode.parentNode);
+            }
+            else alert("操作失败");
+        });
     };
 
     td6.appendChild(button1);
@@ -76,6 +86,7 @@ function downloadFile(fileName, content){
     aLink.dispatchEvent(evt);
     window.open(content);
 }
+
 
 socket.on('user:login', (res) => {
     if (res){
