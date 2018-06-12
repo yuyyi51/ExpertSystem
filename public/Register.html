@@ -11,11 +11,14 @@
             <h1 class="Regish1">注册</h1>
                 <div class="textbox">
                     <label for="uname"><b>用户名：</b></label>
-                    <input type="text" placeholder="用户名"  name="uname" id="uname" value="" required><br><br>
-                    <label for="psw"><b>密码：</b></label>
-                    <input type="password" placeholder="密码" name="psw" id="psw" value="" required><br><br>
-                    <label for="email"><b>邮箱：</b></label>
+                    <input type="text" placeholder="请设置用户名"  name="uname" id="uname" value="" required>
+                    <label id="uname_note" style="font-size: 13px;visibility: hidden">4~12位字符，可以包含汉字</label><br><br>
+                    <label for="psw" style="margin-left: 18px;"><b>密码：</b></label>
+                    <input type="password" placeholder="请设置登录位密码" name="psw" id="psw" value="" required>
+                    <label id="pword_note" style="font-size: 13px;visibility: hidden">6~14位字符</label><br><br>
+                    <label for="email" style="margin-left: 18px;"><b>邮箱：</b></label>
                     <input type="email" placeholder="请输入有效邮箱" name="email" id="email" value="" required>
+                    <label id="email_note" style="font-size: 13px;visibility: hidden">用于与您取得联系</label>
                 </div>
                     <input class="btn" type="submit" id="register" value="注册">
             </div>  
