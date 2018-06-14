@@ -92,7 +92,7 @@ socket.on('func:detail', (res) => {
     $$('need_points').innerHTML = res.required_points;
     $$('confirm_need_points').innerHTML = res.required_points;
     $$('purchase_times').innerHTML = res.pur_times;
-    $$('filesize').innerHTML = (res.filesize / 1024 ).toFixed(3) + 'kb';
+    $$('filesize').innerHTML = (res.filesize / 1024 ).toFixed(2) + 'kb';
     need_points = res.required_points;
 });
 
@@ -125,6 +125,75 @@ socket.on('user:check_purchase', (res) => {
     }
 });
 
+socket.on('func:get_5_day_purchase', (res) => {
+    //console.log(res);
+    let c = $$('canvas1');
+    let cvs = c.getContext('2d');
+    cvs.beginPath();
+    cvs.moveTo(75, 300);
+    cvs.lineTo(525, 300);
+    cvs.lineWidth = 4 ;
+    cvs.strokeStyle = "#aaaaaa";
+    cvs.moveTo(75,300);
+    cvs.lineTo(75, 50);
+    cvs.stroke();
+    cvs.closePath();
+    let max = 0;
+    for (let i = 0; i < 5 ; i++){
+        if (max < res[i].count)
+            max = res[i].count;
+    }
+    let unit = 180.0 / max ;
+    if (max === 0)
+        unit = 0 ;
+    console.log(unit);
+    let last_x , last_y;
+    //画点和线
+    for (let i = 0; i< 5 ; i ++){
+        let y = 250 - res[i].count * unit;
+        let x = 125 + 80 * i ;
+        cvs.beginPath();
+        cvs.lineWidth = 1 ;
+        cvs.strokeStyle = "#ff0000";
+        cvs.fillStyle = '#ff0000';
+        cvs.moveTo(x-4,y-4);
+        cvs.lineTo(x+4,y-4);
+        cvs.lineTo(x+4,y+4);
+        cvs.lineTo(x-4,y+4);
+        cvs.lineTo(x-4,y-4);
+        cvs.fill();
+        cvs.stroke();
+        cvs.closePath();
+        cvs.beginPath();
+        cvs.font = '20px Arial';
+        cvs.fillStyle = '#000000';
+        cvs.fillText(res[i].count.toString(),x-5,y-15);
+        cvs.closePath();
+        if (i !== 0){
+            cvs.beginPath();
+            cvs.moveTo(last_x,last_y);
+            cvs.lineTo(x,y);
+            cvs.strokeStyle = '#ff0000';
+            cvs.stroke();
+            cvs.closePath();
+        }
+        last_x = x ;
+        last_y = y ;
+    }
+
+    //标注日期
+    for (let i = 0 ; i < 5 ; ++i){
+        cvs.beginPath();
+        cvs.fillText(res[i].date.toString() + '日',125 + 80 * i - 15,320);
+        cvs.closePath();
+    }
+
+    cvs.beginPath();
+    cvs.fillText("日期", 530, 300);
+    cvs.fillText("购买次数", 35, 40);
+    cvs.closePath();
+});
+
 
 
 if (getUrlParms('id') === null){
@@ -150,6 +219,7 @@ else
 }
 
 socket.emit('func:detail', getUrlParms('id'));
+socket.emit('func:get_5_day_purchase', getUrlParms('id'));
 if (authinfo !== null)
     socket.emit('user:get_points', authinfo);
 

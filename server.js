@@ -303,12 +303,20 @@ io.on('connection',(socket) => {
     });
     socket.on('func:detail', (id) => {
         db.select_file(id, (res) => {
-            socket.emit('func:detail', res);
+            db.get_username_by_id(res.uploader, (res2) => {
+                res.uploader = res2 ;
+                socket.emit('func:detail', res);
+            });
         });
     });
     socket.on('func:check_privilege', (data) => {
         db.check_privilege(data.user, (res) => {
             socket.emit('func:check_privilege', res);
+        });
+    });
+    socket.on('func:get_5_day_purchase', (id) => {
+        db.get_last_5_day_purchase(id, (res) => {
+            socket.emit('func:get_5_day_purchase', res);
         });
     });
     socket.on('expert:upload', (data) => {
