@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>专家介绍</title>
+    <link rel="stylesheet" href="css/introduction.css">
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            科技资源分享平台
+        </div>
+        <div id="menu">
+          <a href="index.html">首页</a>
+        </div>
+        <div id="search">
+            <input type="text" placeholder="请输入搜索关键字">
+            <input type="submit" value="搜&nbsp;&nbsp;&nbsp;索">
+        </div>
+    </div>
+    <div class="main">
+      <div class="main_body">
+        <div class="intro">
+          <p>专家介绍</p>
+        </div>
+      </div>
+      <div class="underline">
+      </div>
+      <div class="info-table">
+        <form action="#" method="post">
+          <div class="tablerow">
+            <p>姓名</p>
+            <p>
+              <input type="text" name="name" readonly>
+            </p>
+          </div>
+          <div class="tablerow">
+            <p>最高学历:</p>
+            <p>
+              <input type="text" name="education" readonly>
+            </p>
+            <p class="third">所学专业:</p>
+            <p>
+              <input type="text" name="major" readonly>
+            </p>
+          </div>
+          <div class="tablerow">
+            <p>职称:</p>
+            <p>
+              <input type="text" name="job_title" readonly>
+            </p>
+            <p class="third">人才类别:</p>
+            <p>
+              <input type="text" name="talent_category" readonly>
+            </p>
+          </div>
+          <div class="tablerow">
+            <p>专业领域:</p>
+            <p>
+              <input type="text" name="professional_field" readonly>
+            </p>
+            <p class="third">所属单位:</p>
+            <p>
+              <input type="text" name="affiliation" readonly>
+            </p>
+          </div>
+          <div class="tablerow">
+            <p>最熟悉的学科:</p>
+            <p>
+              <input type="text" name="major_subject" readonly>
+            </p>
+          </div>
+          <div class="tablerow" id="brief">
+            <p>简介:</p>
+            <p aria-colspan="3">
+              <textarea name="bried_introduction" readonly></textarea>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="intro">
+        <p>专家资源</p>
+      </div>
+      <div class="resource">
+        <table border="1" id="table">
+          <tr id="head">
+            <th class="td0">序号</th>
+            <th class="td1">文件名称</th>
+            <th class="td2">提交时间</th>
+          </tr>
+          <tr >
+            <td class="td0">1</td>
+            <td class="td1">价值百亿的文献</td>
+            <td class="td2">2018/6/11</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</body>
+</html>
