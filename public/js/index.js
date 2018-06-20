@@ -15,14 +15,12 @@ function logout(){
 
 socket.on('user:login', (res) => {
     if (res){
-        $("#normal_func").empty();
-        let l1 = document.createElement("li");
+        $("#user_info").empty();
         let a1 = document.createElement("a");
         a1.onclick = logout;
         a1.innerHTML = "登出";
         a1.href = "#";
-        l1.append(a1);
-        $$("normal_func").append(l1);
+        $$("user_info").append(a1);
         socket.emit('func:check_privilege', authinfo);
     }
     else {
@@ -36,6 +34,7 @@ socket.on('func:check_privilege', (res) => {
     if (res === 1){
         //专家
         console.log(res);
+        $("#user_func").empty();
         let l1 = document.createElement("li");
         let a1 = document.createElement("a");
         a1.href = "upload.html";
@@ -52,6 +51,7 @@ socket.on('func:check_privilege', (res) => {
     }
     else if (res === 2){
         //管理员
+        $("#user_func").empty();
         let l1 = document.createElement("li");
         let a1 = document.createElement("a");
         a1.href = "feedbackhandle.html";

@@ -40,7 +40,7 @@ socket.on('user:login', (res) => {
     }
 });
 
-$$('auth_form').onsubmit = (e) => {
+$$('btn2').onclick = () => {
     let confirm = {};
     confirm.name = $$('p_name').value;
     confirm.id_number = $$('p_id').value;
@@ -48,6 +48,10 @@ $$('auth_form').onsubmit = (e) => {
         alert("身份证号应为18位");
         return false;
     }
+    confirm.org = [$$('org').value];
+    confirm.foc = [$$('foc').value];
+    confirm.phone = $$('phone').value;
+    confirm.email = $$('email').value;
     confirm.description = $$('description').value;
     confirm.user = authinfo.user;
     let files = $$('files').files;

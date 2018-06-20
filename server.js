@@ -274,19 +274,12 @@ io.on('connection',(socket) => {
             }
             zip.writeZip(config.auth_path + res + ".zip");
             socket.emit('user:certify', true);
-            /*
-            let wstream = fs.createWriteStream(config.auth_path + res, {
-                flags : 'w',
-                encoding: 'binary'
-            });
-            wstream.on('open', () => {
-                wstream.write(JSON.stringify(files), 'utf8');
-                wstream.end();
-            });
-            wstream.on('close', () => {
-                socket.emit('user:certify', true);
-            });
-            */
+            data.sqlid = res;
+            delete data.files;
+            mongodb.add_new_cert(data,(res) => {
+                if (!res)
+                    console.log("向mongo加入认证信息失败");
+            })
         });
     });
     ///////////////////////////////
@@ -357,9 +350,19 @@ io.on('connection',(socket) => {
                 size: data.size,
                 sqlid: res,
                 keywords: [data.keywords],
-                authors: [data.uploader],
-                copyright: 1
+                authors: [{name:uname}],
+                copyright: 1,
+                pur_times: 0,
+                year: new Date().getFullYear()
             };
+            mongodb.add_new_file(mongojson, (res) => {
+                if (res === null){
+                    console.log("向mongo添加文件失败");
+                }
+                else {
+                    console.log("向mongo添加文件成功");
+                }
+            });
             let filename = res ;
             let filebuffer = new Buffer(base, 'base64');
             let wstream = fs.createWriteStream(config.file_path + filename, {

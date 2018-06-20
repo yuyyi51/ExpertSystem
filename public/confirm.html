@@ -187,13 +187,13 @@
                 <div class="tablerow">
                     <p>所属单位:</p>
                     <p>
-                        <input type="text" name="name">
+                        <input type="text" name="name" id="org">
                     </p>
                 </div>
                 <div class="tablerow">
                     <p>研究领域:</p>
                     <p>
-                        <input type="text" name="name">
+                        <input type="text" name="name" id="foc">
                     </p>
                 </div>
                 <div  class="tablerow">
@@ -203,14 +203,16 @@
                         <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>-->
                     </p>
                     <p>
-                        <input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+                        <input type="file" id="files"/>
                     </p>
 
                 </div>
                 <div class="tablerow">
-                    <p></p>
-                    <p id="xmTanDiv" >
-                        <img id="xmTanImg" style="width: 150px; height: 100px;">
+                    <p>
+                        个人介绍：
+                    </p>
+                    <p>
+                        <textarea id="description"></textarea>
                     </p>
                 </div>
             </form>
@@ -220,46 +222,40 @@
             <div class="inf">
          <form action="#" method="post">
         <div class="tablerow">
-            <p>昵称:</p>
-            <p>
-                <input type="text" name="name">
-            </p>
-        </div>
-        <div class="tablerow">
             <p>真实姓名:</p>
             <p>
-                <input type="text" name="name">
+                <input type="text" name="name" id="p_name">
             </p>
         </div>
         <div class="tablerow">
             <p>身份证号码:</p>
             <p>
-                <input type="text" name="name">
+                <input type="text" name="name" id="p_id">
             </p>
         </div>
         <div class="tablerow">
             <p>联系电话:</p>
             <p>
-                <input type="text" name="education">
+                <input type="text" name="education" id="phone">
             </p>
         </div>
         <div class="tablerow">
             <p>邮箱:</p>
             <p>
-                <input type="text" name="job_title">
+                <input type="text" name="job_title" id="email">
             </p>
         </div>
     </form>
      </div>
     </div>
-    <div class="btn">
-        <div>
-            <button class="group-btn" id="btn3" value="1" class="btn btn-primary btn-lg" onclick="back()">上一步</button>
-            <button class="group-btn" id="btn1" value="1" class="btn btn-primary btn-lg" onclick="next()">下一步</button>
-            <button class="group-btn" id="btn2" value="1" class="btn btn-primary btn-lg" onclick="next()">完成</button>
-            <button class="group-btn" id="btn4" value="1" class="btn btn-primary btn-lg"><a href="index.html">返回首页</a></button>
+        <div class="btn">
+            <div>
+                <button class="group-btn" id="btn3" value="1" class="btn btn-primary btn-lg" onclick="back()">上一步</button>
+                <button class="group-btn" id="btn1" value="1" class="btn btn-primary btn-lg" onclick="next()">下一步</button>
+                <button class="group-btn" id="btn2" value="1" class="btn btn-primary btn-lg" onclick="">完成</button>
+                <button class="group-btn" id="btn4" value="1" class="btn btn-primary btn-lg"><a href="index.html">返回首页</a></button>
+            </div>
         </div>
-    </div>
     </div>
 	<!-- end page -->
     <div id="footer">
