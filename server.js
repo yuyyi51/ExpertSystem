@@ -303,6 +303,11 @@ io.on('connection',(socket) => {
             socket.emit('func:search', res);
         });
     });
+    socket.on('func:search_new', (data) => {
+        mongodb.search(data.keywords, (data.page-1)*10, 10, (res) => {
+            socket.emit('func:search_new', res);
+        });
+    });
     socket.on('func:detail', (id) => {
         db.select_file(id, (res) => {
             db.get_username_by_id(res.uploader, (res2) => {
