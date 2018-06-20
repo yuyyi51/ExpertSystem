@@ -280,50 +280,64 @@ var result = {
         "53e9b4d9b7602d9703ffa2b9"
     ]
 };
-
-if(result.title!==undefined) $$('resource_name').innerHTML = result.title;
-    else $$('resource_name').innerHTML = "暂无";
-if(result.authors[0]!==undefined) $$('author1').innerHTML = result.authors[0].name + ";";
-if(result.authors[1]!==undefined) $$('author2').innerHTML = result.authors[1].name + ";";
-if(result.authors[2]!==undefined) $$('author3').innerHTML = result.authors[2].name + ";";
-if(result.abstract!==undefined) $$('describe').innerHTML = result.abstract;
-    else $$('describe').innerHTML = "暂无";
-if(result.keywords[0]!==undefined) {
-    var keywords = "";
-    for (var i = 0; i < result.keywords.length; i++) {
-        keywords = keywords + result.keywords[i].toString() + ";";
+function detail_load(result) {
+    if (result.title !== undefined) $$('resource_name').innerHTML = result.title;
+        else $$('resource_name').innerHTML = "暂无";
+    if(result.authors !== undefined) {
+        var  count=Math.min(result.authors.length,3);
+        for(var i=0;i<count;i++)
+        {
+            var author=document.createElement('span');
+            author.className = "author";
+            author.innerHTML = result.authors[i].name.toString() + ";";
+            $$('authors').appendChild(author);
+        }
+        if(count > 3)
+        {
+            $$('authors').innerHTML += "等";
+        }
     }
-    $$('keywords').innerHTML = keywords;
-}
+    else
+        $$('authors').innerHTML = "暂无";
+    if (result.abstract !== undefined) $$('describe').innerHTML = result.abstract;
+        else $$('describe').innerHTML = "暂无";
+    if (result.keywords !== undefined) {
+        var keywords = "";
+        for (var i = 0; i < result.keywords.length; i++) {
+            keywords = keywords + result.keywords[i].toString() + ";";
+        }
+        $$('keywords').innerHTML = keywords;
+    }
     else $$('keywords').innerHTML = "暂无";
-if(result.references[0]!==undefined)
-{
-    for (var i = 0; i < result.references.length; i++) {
-        var node = document.createElement('p');
-        var part1 = document.createElement('span');
-        part1.className = "ref-order";
-        part1.innerHTML="[" + (i+1).toString() + "]";
-        node.appendChild(part1);
-        var part2 = document.createElement('span');
-        part2.className = "ref-title";
-        part2.innerHTML="title";   //文献标题
-        node.appendChild(part2);
-        var part3 = document.createElement('span');
-        part3.className = "ref-type";
-        part3.innerHTML="[" + "t" + "].";   //文献类别
-        node.appendChild(part3);
-        var part4 = document.createElement('span');
-        part4.className = "ref-author";
-        part4.innerHTML="author1" + "," + "author2" + ".";   //文献作者
-        node.appendChild(part4);
-        var part5 = document.createElement('span');
-        part5.className = "magzine-type";
-        part5.innerHTML="magazine" + ".";   //文献发表机构
-        node.appendChild(part5);
-        var part6 = document.createElement('span');
-        part6.className = "ref-time";
-        part6.innerHTML="year" + "(" + "month" + ")";   //文献发表机构
-        node.appendChild(part6);
-        $$('refer').appendChild(node);
+    if (result.references !== undefined) {
+        for (var i = 0; i < result.references.length; i++) {
+            var node = document.createElement('p');
+            var part1 = document.createElement('span');
+            part1.className = "ref-order";
+            part1.innerHTML = "[" + (i + 1).toString() + "]";
+            node.appendChild(part1);
+            var part2 = document.createElement('span');
+            part2.className = "ref-title";
+            part2.innerHTML = "title";   //文献标题
+            node.appendChild(part2);
+            var part3 = document.createElement('span');
+            part3.className = "ref-type";
+            part3.innerHTML = "[" + "t" + "].";   //文献类别
+            node.appendChild(part3);
+            var part4 = document.createElement('span');
+            part4.className = "ref-author";
+            part4.innerHTML = "author1" + "," + "author2" + ".";   //文献作者
+            node.appendChild(part4);
+            var part5 = document.createElement('span');
+            part5.className = "magzine-type";
+            part5.innerHTML = "magazine" + ".";   //文献发表机构
+            node.appendChild(part5);
+            var part6 = document.createElement('span');
+            part6.className = "ref-time";
+            part6.innerHTML = "year" + "(" + "month" + ")";   //文献发表机构
+            node.appendChild(part6);
+            $$('refer').appendChild(node);
+        }
     }
 }
+detail_load(result);
