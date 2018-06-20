@@ -33,6 +33,7 @@ let pwd_cookie_name = 'expert_system_password';
 
 let need_points = null;
 let now_points = null ;
+let copyright = false;
 
 function getUrlParms(name){
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -197,9 +198,9 @@ socket.on('func:get_5_day_purchase', (res) => {
 
 
 if (getUrlParms('id') === null){
-    //alert("参数错误");
-    //window.location.href = '/error';
-    //throw new Error("参数错误");
+    alert("参数错误");
+    window.location.href = '/error';
+    throw new Error("参数错误");
 }
 
 authinfo = {
@@ -289,7 +290,15 @@ function detail_load(result) {
         {
             var author=document.createElement('span');
             author.className = "author";
-            author.innerHTML = result.authors[i].name.toString() + ";";
+            if (result.authors[i].id !== null && result.authors[i].id !== undefined)
+            {
+                let a = document.createElement('a');
+                a.href = 'introduction.html?id=' + result.authors[i].id;
+                a.innerHTML = result.authors[i].name.toString() + ";";
+                author.appendChild(a);
+            }
+            else
+                author.innerHTML = result.authors[i].name.toString() + ";";
             $$('authors').appendChild(author);
         }
         if(count > 3)
@@ -309,7 +318,8 @@ function detail_load(result) {
         $$('keywords').innerHTML = keywords;
     }
     else $$('keywords').innerHTML = "暂无";
-    if (result.references !== undefined) {
+    $$('time').innerHTML = result.year || "暂无";
+    /*if (result.references !== undefined) {
         for (var i = 0; i < result.references.length; i++) {
             var node = document.createElement('p');
             var part1 = document.createElement('span');
@@ -338,6 +348,57 @@ function detail_load(result) {
             node.appendChild(part6);
             $$('refer').appendChild(node);
         }
+    }*/
+}
+function refer_load(results){
+    //<p><span class="ref-order">[1]</span><span class="ref-title">SPOC混合学习模式设计研究[J].陈然,杨成.中国远程教育.2015(05)</span></p>
+    for (let i = 0 ; i < results.length ; ++i){
+        var p = document.createElement('p');
+        p.innerHTML = "<span class=\"ref-order\">[" + (i+1) + "]</span><span class=\"ref-title\"><a href='detail.html?id="+results[i]._id+"'>" + results[i].title + '.' +
+            (results[i].authors === undefined ? "" : results[i].authors[0] ) + '.' + (results[i].year || "") + "</a></span>";
+        $$('refer').appendChild(p);
     }
 }
-detail_load(result);
+//detail_load(result);
+socket.on('func:detail_new', (res) => {
+    detail_load(res);
+    if (res.copyright !== undefined){
+        copyright = true;
+        need_points = res.points;
+        $$('need_points').innerHTML = need_points;
+        $$('purchase_times').innerHTML = res.pur_times;
+        $$('filesize').innerHTML = (res.filesize / 1024 ).toFixed(2) + 'kb';
+    }
+    else {
+        $$('need_points').innerHTML = "本站不提供购买与下载";
+        $$('purchase_times').innerHTML = 0;
+        $$('filesize').innerHTML = 0;
+        $$('btn2').onclick = () => {
+            alert("该资源本站不提供购买与下载，将为您重定向到具有版权的网站");
+            if (res.url === undefined){
+                alert("未收录该论文的网站");
+                return;
+            }
+            else
+            {
+                window.location.href = res.url[0];
+            }
+        };
+        $$('btn4').onclick = () => {
+            alert("该资源本站不提供购买与下载，将为您重定向到具有版权的网站");
+            if (res.url === undefined){
+                alert("未收录该论文的网站");
+                return;
+            }
+            else
+            {
+                window.location.href = res.url[0];
+            }
+        };
+    }
+});
+socket.on("func:get_refer", (res) => {
+    refer_load(res);
+});
+socket.emit('func:detail_new',getUrlParms('id'));
+socket.emit('func:get_refer', getUrlParms('id'));
