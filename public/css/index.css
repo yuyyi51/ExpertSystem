@@ -2,63 +2,122 @@
     margin: 0px;
     padding: 0px;
 }
+
 body{
-    background: url("../img/index_background.jpeg");
+    background-image: url("../img/desktop.jpg");
+    background-repeat:  no-repeat;
 }
-li{
+
+ul{
     list-style-type: none;
-    float: left;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-right: 2px grey solid;
 }
+
 a{
     text-decoration: none;
+}
+
+.header{
+    height: 90px;
+}
+
+#logo{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 2.5em;
+    width: 330px;
+    margin-top: 25px;
+    margin-left: 200px;
     color: white;
 }
-a:hover{
-    color: chocolate;
-}
-.head{
-    height: 100px;
-    margin-top:20px;
-    margin-left: 100px;
-    margin-right: 100px;
-    color: chocolate;
-    font-weight: bold;
-    font-size: 15px;
-}
-.function{
-    float:left;
 
+
+#menu{
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: bold;
+    vertical-align: top;
+    margin-top: 40px;
+    margin-left: 80px;
+    width: 500px;
+    line-height: 40px;
 }
+
+#menu li{
+    display: inline-block;
+    width:  120px;
+    text-align:  center;
+}
+
+#menu a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: dodgerblue;
+}
+
+#menu a:hover{
+    color: white;
+    background-color: dodgerblue;
+}
+
 .userInfo{
-    float:right;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 35px;
+    margin-left: 80px;
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.userInfo li{
+    display: inline-block;
+    width: 50px;
+    text-align:  center;
+}
+
+.userInfo a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.userInfo a:hover{
+    color: white;
+    background-color: dodgerblue;
 }
 .search{
-    margin-top: 200px;
-    margin-left: 100px;
-    width: 649px;
+    margin-top: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
 }
 .search-content{
-    float: left;
     width: 555px;
     height: 20px;
     padding: 15px 0 15px 20px;
-    font-size: 14px;
+    font-size: 1.1em;
     line-height: 20px;
     background-color: #fff;
+    vertical-align: bottom
 }
 .search-btn {
+    display: inline-block;
   width: 68px;
-  height: 54px;
-  border: none;
+  height: 56px;
+    vertical-align: bottom;
   border-radius: 0 2px 2px 0;
   background: dodgerblue;
   font-size: 15px;
   font-weight: 100;
   color: white;
   cursor: pointer;
+    margin-left: -7px;
+
 }
 .footer{
     position:absolute;
@@ -67,4 +126,9 @@ a:hover{
     color: ivory;
     font-family: "Microsoft Yahei";
     font-weight: bold;
+}
+
+input::-webkit-input-placeholder{
+    transform: scale(1.2);
+    transform-origin: 0% 55%;
 }

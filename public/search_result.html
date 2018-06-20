@@ -6,18 +6,54 @@
     <link rel="stylesheet" type="text/css" href="css/search_result.css">
 </head>
 <body>
+    <div class="head-top">
+        <div class="head-top cr-top ">
+            <div class="top-r">
+                <!--如果没有登入 显示!-->
+                <a  id="login" href="Login.html"><span class="loginw">登录</span></a>
+                <a  id="signup" href="Register.html"><span>注册</span></a>
+                <!--如果已登入 显示!-->
+                <a id="user" href="#"><span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
+                <!--退出-->
+                <a id="logout" href="#" onclick=""><span>退出</span></a><!--退出之后跳转到主页面!-->
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
     <div class="head">
-        <form action="search_result.html">
-            <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
-            <input type="submit" value="搜索" class="search-btn" />
-        </form>
-        <ul class="function">
+        <div id="logo">
+            <span>
+            科技资源分享平台
+            </span>
+        </div>
+        <div id="search">
+            <form action="search_result.html">
+                <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
+                <input type="submit" value="搜&nbsp;&nbsp;索" class="search-btn" />
+            </form>
+        </div>
+        <!--<ul class="function">
             <li>
                 <a href="index.html">主页</a>
                 <a href="Login.html">登录</a>
                 <a href="Register.html">注册</a>
             </li>
-        </ul>
+        </ul>-->
+    </div>
+    <div id="top_bar">
+        <div id="page_name" class="display">
+           查询结果
+        </div>
+        <div class="display" id="bar">
+            <ul class="function">
+                <li class="display"><a href="index.html">主页</a></li>
+                <!--<li class="display"><a href="Login.html">登录</a></li>
+                <li class="display"><a href="Register.html">注册</a></li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="cut_line">
+        <p></p>
     </div>
     <!--div class="left">
         <ul class="lefttitle">
@@ -29,30 +65,59 @@
             <a href="#"><li>发布时间</li></a>
         </ul>
     </div-->
-    <div class="container">
-
-        <div class="search-result" id="result">
-            <ul class="info">
-                <li class="name">
-                    题名(点击查看资源详情)
-                </li >
-                <li class="author">
-                    作者
-                </li>
-                <li class="time">
-                    发表时间
-                </li>
-            </ul>
+    <!--<div class="container">-->
+    <div class="search-result" id="result">
+        <div class="result-term">
+            <div>
+                <h2>人工智能原理</h2>
+                <p>
+                    <span class="author">石纯</span>---<span class="date">1993</span>---<span class="quote">被引量：</span><span class="quote_num">793</span>
+                </p>
+                <p class="summary">
+                    首先对第4届"智能系统在电力系统中的应用"国际会议发表的全部论文做了介绍,之后概述了近几年来较受关注的分布式人工智能技术、粗糙集理论
+                </p>
+            </div>
+            <div class="filed">
+                <div class="filed-term">人工智能</div>
+            </div>
         </div>
-        <div class="Pagenumber">
-            <a href="#" onclick="change_page(1)"><div class="num">1</div></a>
-            <a href="#" onclick="change_page(2)"><div class="num">2</div></a>
-            <a href="#" onclick="change_page(3)"><div class="num">3</div></a>
-            <a href="#" onclick="change_page(4)"><div class="num">4</div></a>
-            <a href="#" onclick="change_page(5)"><div class="num">5</div></a>
+        <!--<div class="result-term">
+            <div>
+                <h2>人工智能原理</h2>
+                <p>
+                    <span class="author">石纯</span>---<span class="date">1993</span>---<span class="quote">被引量：</span><span class="quote_num">793</span>
+                </p>
+                <p class="summary">
+                    首先对第4届"智能系统在电力系统中的应用"国际会议发表的全部论文做了介绍,之后概述了近几年来较受关注的分布式人工智能技术、粗糙集理论
+                </p>
+            </div>
+            <div class="filed">
+                <div class="filed-term">人工智能</div>
+            </div>
         </div>
+        <div class="result-term">
+            <div>
+                <h2>人工智能原理</h2>
+                <p>
+                    <span class="author">石纯</span>---<span class="date">1993</span>---<span class="quote">被引量：</span><span class="quote_num">793</span>
+                </p>
+                <p class="summary">
+                    首先对第4届"智能系统在电力系统中的应用"国际会议发表的全部论文做了介绍,之后概述了近几年来较受关注的分布式人工智能技术、粗糙集理论
+                </p>
+            </div>
+            <div class="filed">
+                <div class="filed-term">人工智能</div>
+            </div>
+        </div>-->
     </div>
-    <div class="footer">
+    <div class="Pagenumber">
+        <div class="num"><a href="#" onclick="change_page(1)">1</a></div>
+        <div class="num"><a href="#" onclick="change_page(2)">2</a></div>
+        <div class="num"><a href="#" onclick="change_page(3)">3</a></div>
+        <div class="num"><a href="#" onclick="change_page(4)">4</a></div>
+        <div class="num"><a href="#" onclick="change_page(5)">5</a></div>
+    </div>
+    <!--<div class="footer">
         <ul>
             <li>
                 copyright@Group KnowNothing
@@ -61,7 +126,7 @@
                 <a href="#">意见建议</a>
             </li>
         </ul>
-    </div>
+    </div>-->
     <script>
         function getUrlParmsH(key){
             // 获取参数

@@ -1,69 +1,214 @@
-*{
-    margin: 0px;
-    padding: 0px;
+
+body{
+    font-size: small;
 }
-li{
-    list-style-type: none;
-    float: left;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-right: 2px grey solid;
-}
+
 a{
     text-decoration: none;
-    color: white;
+    color: #000;
 }
-a:hover{
-    color: chocolate;
-}
+
 .head{
-    height: 120px;
-    padding-top:20px;
-    padding-left: 100px;
-    padding-right: 100px;
-    background-image:url("../img/banner1.jpg");
-    color: chocolate;
-    font-weight: bold;
-    font-size: 15px;
-    width: 100%;
+    height: 90px;
+}
 
+#logo{
+    display: inline-block;
+    font-size: 3em;
+    width: 330px;
+    margin-left: 200px;
+    margin-top: 36px;
+    color: black;
 }
-.function{
-    float:left;
 
+#search{
+    display: inline-block;
+    height: 90px;
+    vertical-align: top;
+    margin-left:  300px;
 }
-.userInfo{
-    float:right;
-}
-.search{
-    margin-top: 200px;
-    margin-left: 100px;
-    width: 649px;
-}
+
 .search-content{
-    float: left;
-    width: 500px;
-    height: 6px;
-    padding: 15px 0 15px 30px;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 400px;
+    height: 40px;
+    padding: 3px 0 3px 20px;
     font-size: 14px;
-    line-height: 20px;
+    color: #7d7d7d;
+    line-height: 30px;
     background-color: #fff;
 }
-.search-result{
-    height: 900px;;
-}
+
 .search-btn {
-    float: right;
-    width: 50px;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 68px;
     height: 40px;
     border: none;
-    border-radius: 0 2px 2px 0;
-    background: dodgerblue;
-    font-size: 12px;
+    background-color: #407fff;
+    font-size: 15px;
     font-weight: 100;
     color: white;
     cursor: pointer;
+    margin-left: -7px;
 }
+
+#search form{
+    padding-top: 40px;
+}
+
+#top_bar{
+    margin-top: 20px;
+    /*border: 2px solid red;*/
+}
+
+.display{
+    display: inline-block;
+}
+#page_name{
+    width: 200px;
+    line-height: 45px;
+    text-align:  center;
+    font-size: 1.5em;
+    margin-left: 160px;
+    color: white;
+    background-color: #407fff;
+    border-bottom: 1px solid #407fff;
+}
+
+#bar{
+    margin-left: 50px;
+    vertical-align: top;
+}
+
+#bar ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+.function{
+    list-style-type: none;
+    width: 380px;
+    height: 40px;
+    padding-top: 5px;
+}
+
+.function li{
+    width: 80px;
+    height: 100%;
+    line-height: 100%;
+    margin-left: -5px;
+}
+
+.function a{
+    display: inline-block;
+    text-align: center;
+    font-size: 1.2em;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+}
+a:hover{
+    color: white;
+    background-color: #407fff;
+}
+
+.cut_line p{
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 4px solid #2a8cd7;
+}
+
+
+.main{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    width: 752px;
+}
+
+.main-header{
+    padding-top: 30px;
+    height: 50px;
+}
+
+
+.info-table {
+    margin-top: 30px;
+}
+.tablerow{
+    display: table-row;
+    height: 40px;
+    line-height: 40px;
+}
+
+.tablerow p{
+    display: table-cell;
+    font-size: 1.2em;
+    vertical-align: top;
+    margin-left: 50px;
+    width: 200px;
+}
+
+.tablerow p:first-child{
+    width: 100px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.info-table input {
+    width: 200px;
+    height: 25px;
+    line-height: 25px;
+    border: none;
+}
+
+.info-table textarea{
+    width: 400px;
+    height: 150px;
+    border: none;
+}
+
+#brief p{
+    padding-top: 30px;
+}
+
+#brief p:first-child{
+    vertical-align: top;
+}
+.intro p{
+    font-size: 1.5em;
+    padding-left: 10px;
+    border-left: 4px solid #407fff;
+}
+
+#table{
+    border-collapse: collapse;
+    border: 0px white;
+    font-size: 1.2em;
+    font-weight: lighter;
+    /*margin-top: 15px;*/
+}
+.btn_group{
+    width: 180px;
+    margin: 15px auto;
+}
+
+#btn2{
+    color: white;
+    background: red;
+    margin-left: 30px;
+}
+#head{
+    background-color: #407fff;
+}
+.underline{
+    border-top: 1px solid #c0ccbb;
+}
+
 .footer{
     position:absolute;
     left:20px;

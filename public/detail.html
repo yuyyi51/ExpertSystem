@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/detail.css">
     <title></title>
     <style>
@@ -94,30 +94,86 @@
   </head>
   <body>
     <div id="body">
-    <div class="head-top">
-      <div class="head-top cr-top ">
+    <!--<div class="head-top">
+      <!--<div class="head-top cr-top ">
         <!--<img  class="logoimg"src="img/timg.jpg" alt="">-->
-        <div class="top-width">
+       <!--<div class="top-width">
           <div class="top-l">
             <a href="/"><span class="logo-p">科技资源共享平台</span></a>
           </div>
           <div class="top-r">
           <!--如果没有登入 显示!-->
-          <a  id="login" href="Login.html"><span class="glyph glyphicon glyphicon-log-in"></span> <span class="loginw">登录</span></a>
+          <!--<a  id="login" href="Login.html"><span class="glyph glyphicon glyphicon-log-in"></span> <span class="loginw">登录</span></a>
           <a  id="signup" href="Register.html"><span class="glyph glyphicon glyphicon-lock"></span><span>注册</span></a>
           <!--如果已登入 显示!-->
-          <a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
+          <!--<a id="user" href="#"><span class="glyph glyphicon glyphicon-user"></span> <span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
           <!--退出-->
-          <a id="logout" href="#" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
+          <!--<a id="logout" href="#" onclick=""><span class="glyph glyphicon glyphicon-log-out"></span><span>退出</span></a><!--退出之后跳转到主页面!-->
+          <!--</div>
+        </div>
+      </div>-->
+      <div class="head-top">
+        <div class="head-top cr-top ">
+          <div class="top-r">
+            <!--如果没有登入 显示!-->
+            <a  id="login" href="Login.html"><span class="loginw">登录</span></a>
+            <a  id="signup" href="Register.html"><span>注册</span></a>
+            <!--如果已登入 显示!-->
+            <a id="user" href="#"><span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
+            <!--退出-->
+            <a id="logout" href="#" onclick=""><span>退出</span></a><!--退出之后跳转到主页面!-->
           </div>
+          <!--</div>-->
         </div>
       </div>
-    </div>
-    <div class="line-box">
-      <h1>
-        资源详情
-      </h1>
-      <form action="" method="post">
+      <div class="head">
+        <div id="logo">
+                科技资源分享平台
+        </div>
+        <div id="search">
+          <form action="" method="post">
+            <!--<div class="search-pos row">
+            <div class="search-pos">
+              <div class="col-lg-2">
+                <div class="input-group">-->
+                  <input id="search-data" class="form-control" type="text" name="search-data" value="" placeholder="请输入搜索内容">
+                  <!--<div class="input-group-btn">-->
+                  <button  id="search_btn" class="btn" type="button" name="button" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search-data').value">搜&nbsp;&nbsp;索</button>
+                  <!--</div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!--<form action="search_result.html">
+            <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
+            <input type="submit" value="搜&nbsp;&nbsp;索" class="search-btn" />-->
+          </form>
+        </div>
+        <!--<ul class="function">
+            <li>
+                <a href="index.html">主页</a>
+                <a href="Login.html">登录</a>
+                <a href="Register.html">注册</a>
+            </li>
+        </ul>-->
+      </div>
+      <div id="top_bar">
+        <div id="page_name" class="display">
+          资源详情
+        </div>
+        <div class="display" id="bar">
+          <ul class="function">
+            <li class="display"><a href="index.html">主页</a></li>
+            <!--<li class="display"><a href="Login.html">登录</a></li>
+            <li class="display"><a href="Register.html">注册</a></li>-->
+          </ul>
+        </div>
+      </div>
+      <!--<div class="line-box">
+        <h1>
+          资源详情
+        </h1>
+        <form action="" method="post">
       <div class="search-pos row">
       <div class="col-lg-2">
         <div class="input-group">
@@ -129,6 +185,9 @@
       </div>
       </div>
       </form>
+    </div>-->
+    <div class="cut_line">
+       <p></p>
     </div>
     <div class="main">
       <div class="list-group">
@@ -136,52 +195,66 @@
           <label>知识节点</label>
         </div>
         <a class="list-group-item" href="#file_title"><li>基本信息</li></a>
-        <a class="list-group-item" href="#discribe"><li>描述</li></a>
+        <a class="list-group-item" href="#summary"><li>摘要</li></a>
         <a class="list-group-item" href="#catalog_keyword"><li>关键词</li></a>
         <a class="list-group-item" href="#catalog_classify"><li>分类</li></a>
       </div>
       <div class="info-container">
         <div id="file_title">
-          <h3 class="file_title" id="resource_name">资源名</h3>
+          <h3 class="file_title" id="resource_name">从MOOC到SPOC:一种深度学习模式建构</h3>
+          <p><span class="author">曾明星</span><span class="author">曾明星</span><span class="author">曾明星</span></p>
+          <p class="upload-time">上传时间：<span class="time">2018-6-17</span></p>
         </div>
         <div class="line"></div>
-        <p class="someinfo">
+        <!--<p class="someinfo">
           <strong>上传者: </strong><a href=" " id="uploader_href"><span class="uploader-name" id="uploader">上传者名</span></a>
-        </p>
-        <p class="someinfo">
+        </p>-->
+        <!--<p class="someinfo">
         <strong>上传时间: </strong><span class="upload-date" id="upload_time">时间</span>
         </p>
         <p class="someinfo">
           <strong>文件名: </strong><span id="filename">文件名</span>
-        </p>
+        </p>-->
       </div>
 
       <div class="detail_info">
-        <p class="discribe">
-          <label>描述: </label>
+        <p class="discribe" id="summary">
+          <label>摘要: </label>
         </p>
         <div class="info">
           <p id="info">
-            <span id="describe">描述</span>
+            <span id="describe">SPOC是将MOOC与课堂教学相结合的一种混合式教学模式,是MOOC的继承、完善与超越。从MOOC到SPOC,
+            为学生从浅层学习向深度学习转变提供了资源、环境与理念的支持,促进MOOC在高校教学落地生根。该文建构了由SPOC翻转课堂、DELC深度学习过程、SPOC对深度学习的支持所构成的深度学习模式,
+            将SPOC技术平台、教学内容、学习方式、评价手段等融入高校教学过程,并翻转传统教学流程,变革教学结构,
+            注重学习情境、交互与反思的设计,学生经历学习准备、知识构建、迁移应用与创造、评价与批判四个循环与递进的阶段,
+            达到对知识的深度理解与问题解决,提高高阶思维能力,大力提升教学质量。</span>
           </p>
           <p id="catalog_keyword" class="catalog_keyword">
             <label for="catalog_keyword">关键词: </label>
-            <span id="keywords">关键词</span>
+            <span id="keywords">MOOC; SPOC; 翻转课堂; 深度学习;</span>
           </p>
-          <p id="catalog_classify" class="catalog_classify">
+          <!--<p id="catalog_classify" class="catalog_classify">
             <label for="catalog_classify">分类: </label>
             <span id="catalog">期刊</span>
-          </p>
+          </p>-->
           <!--<span class="more">
             <a id="moreinfo" onclick="">更多</a>
           </span>
           <span class="reset">
               <a id="resetinfo" onclick="">还原</a>
           </span>-->
-        </div>
+        <!--</div>
         <p align="center">
           <canvas id="canvas1" width="600px" height="350px" style="border:1px solid #c3c3c3;">该浏览器不支持canvas</canvas>
-        </p>
+        </p>-
+        </div>-->
+      </div>
+      <div id="reference">
+        <h4>参考文献</h4>
+        <div class="line"></div>
+        <div class="detail-ref">
+          <p><span class="ref-order">[1]</span></span><span class="ref-title">SPOC混合学习模式设计研究</span><span class="ref-type">[J].</span><span class="ref-author">陈然,杨成.</span>
+            <span class="magzine-type">中国远程教育.</span><span class="ref-time">2015(05)</span></p>
         </div>
       </div>
       <div class="btn_group">
@@ -190,15 +263,15 @@
         <button id="btn2" class="btn btn-primary btn-lg" onclick="click_buysource()">购买资源</button>
         <button id="btn3" class="btn btn-primary btn-lg" onclick="window.location.href='Feedback.html'">提交反馈</button>
         <button id="btn4" class="btn btn-success btn-lg" onclick="">下载</button><!--购买了之后显示？display=!-->
-      </div>
+      <br>
       <br>
       <p class="etc-text">
         <strong>所需积分: </strong><span id="need_points">10</span> | <strong>购买次数: </strong><span id="purchase_times">10</span> | <strong>文件大小: </strong><span class="file-size" id="filesize">1MB</span>
       </p>
     </div>
-    <div class="footer">
-    <!--  <p style="text-align:center;">Copyright@2018</p>!-->
-    </div>
+    <!--<div class="footer">
+    <!--  <p style="text-align:center;">Copyright@2018</p>!
+    </div>-->
     </div>
     <div id="confirm_buy" class="confirm_buy" style="visibility: hidden">
       <a class="remove-btn" onclick="cancel()" ><span class="glyphicon glyphicon-remove"></span></a>
@@ -234,5 +307,7 @@
     <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
     <script src="js/cookie_helper.js"></script>
     <script src="js/detail.js"></script>
+    </div>
+    </div>
   </body>
 </html>

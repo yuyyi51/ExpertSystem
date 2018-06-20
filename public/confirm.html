@@ -1,60 +1,272 @@
 <!--DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>认证申请界面</title>
-<meta name="keywords" content="" />
-<meta name="Premium Series" content="" />
-<link href="css/default.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>认证申请界面</title>
+    <meta name="keywords" content="" />
+    <meta name="Premium Series" content="" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" media="screen" />
+    <script>
+        var time = 1;
+        function next(){
+            var btn = document.getElementById("btn1");
+            var div1= document.getElementById("certificate-info");
+            var div2= document.getElementById("basic-info");
+            var div3 = document.getElementById("finish");
+            if( time == 1 )
+            {
+                div2.style.display ="none";
+                div1.style.display ="block";
+                div1.style.border="none";
+                document.getElementById("process-term2").style.backgroundColor="#407fff";
+                document.getElementById("process-term1").style.backgroundColor="white";
+                document.getElementById("end1").style.borderColor="#407fff #407fff #407fff white";
+                document.getElementById("end2").style.borderColor="white white white #407fff";
+                document.getElementById("btn2").style.display="inline-block";
+                document.getElementById("btn3").style.display="inline-block";
+                document.getElementById("btn1").style.display="none";
+
+                time = time + 1;
+            }
+            else if( time == 2)
+            {
+                div3.style.display ="block";
+                div1.style.display ="none";
+                document.getElementById("process-term3").style.backgroundColor="#407fff";
+                document.getElementById("process-term2").style.backgroundColor="white";
+                document.getElementById("end1").style.borderColor="white";
+                document.getElementById("end2").style.borderColor="#407fff #407fff #407fff white";
+                document.getElementById("end3").style.borderColor="white white white #407fff";
+                document.getElementById("btn4").style.display="inline-block";
+                document.getElementById("btn2").style.display="none";
+                document.getElementById("btn3").style.display="none";
+                time = time + 1;
+            }
+
+            if( time > 3 )
+                time = 1;
+        }
+
+        function back(){
+            var btn = document.getElementById("btn1");
+            var div1= document.getElementById("certificate-info");
+            var div2= document.getElementById("basic-info");
+            var div3 = document.getElementById("finish");
+            div1.style.display ="none";
+            div2.style.display ="block";
+            document.getElementById("process-term2").style.backgroundColor="white";
+            document.getElementById("process-term1").style.backgroundColor="#407fff";
+            document.getElementById("end1").style.borderColor="white white white #407fff ";
+            document.getElementById("end2").style.borderColor="white";
+            document.getElementById("btn2").style.display="none";
+            document.getElementById("btn3").style.display="none";
+            document.getElementById("btn1").style.display="inline-block";
+            time = 1;
+        }
+
+        //判断浏览器是否支持FileReader接口
+        if (typeof FileReader == 'undefined') {
+            document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+            //使选择控件不可操作
+            document.getElementById("xdaTanFileImg").setAttribute("disabled", "disabled");
+        }
+
+        //选择图片，马上预览
+        function xmTanUploadImg(obj) {
+            var file = obj.files[0];
+
+            console.log(obj);console.log(file);
+            console.log("file.size = " + file.size);  //file.size 单位为byte
+
+            var reader = new FileReader();
+
+            //读取文件过程方法
+            reader.onloadstart = function (e) {
+                console.log("开始读取....");
+            }
+            reader.onprogress = function (e) {
+                console.log("正在读取中....");
+            }
+            reader.onabort = function (e) {
+                console.log("中断读取....");
+            }
+            reader.onerror = function (e) {
+                console.log("读取异常....");
+            }
+            reader.onload = function (e) {
+                console.log("成功读取....");
+
+                var img = document.getElementById("xmTanImg");
+                img.src = e.target.result;
+                //或者 img.src = this.result;  //e.target == this
+            }
+
+            reader.readAsDataURL(file)
+        }
+    </script>
 </head>
 <body>
-<!-- start header -->
-<div id="header">
-	<div id="logo">
-		<h1><a href="#"><span>认证申请界面</span></a></h1>
-	</div>
-	<div id="menu">
-		<ul id="main">
-			<li class="current_page_item"><a href="#" class="first">主页</a></li>
-		</ul>
-	</div>
-</div>
-<!-- end header -->
+    <div class="header">
+        <div class="head-top">
+            <div class="head-top cr-top ">
+                <div class="top-r">
+                    <!--如果没有登入 显示!-->
+                    <a  id="login" href="Login.html"><span class="loginw">登录</span></a>
+                    <a  id="signup" href="Register.html"><span>注册</span></a>
+                    <!--如果已登入 显示!-->
+                    <a id="user" href="#"><span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
+                    <!--退出-->
+                    <a id="logout" href="#" onclick=""><span>退出</span></a><!--退出之后跳转到主页面!-->
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="head">
+            <div id="logo">
+                        科技资源分享平台
+            </div>
+            <div id="search">
+                <form action="search_result.html">
+                    <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
+                    <input type="submit" value="搜&nbsp;&nbsp;索" class="search-btn" />
+                </form>
+            </div>
+        </div>
+        <div id="top_bar">
+            <div id="page_name" class="display">
+                认证申请
+            </div>
+            <div class="display" id="bar">
+                <ul class="function">
+                    <li class="display"><a href="index.html">主页</a></li>
+                    <!--<li class="display"><a href="Login.html">登录</a></li>
+                    <li class="display"><a href="Register.html">注册</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="cut_line">
+            <p></p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main_body">
+            <div class="intro">
+                <p>申请认证</p>
+            </div>
+        </div>
+        <div class="underline">
+        </div>
+        <div class="proccess">
+            <div class="process-term" id="process-term1">1、填写基本信息</div>
+            <div class="end process-term" id="end1"></div>
+            <div class="process-term" id="process-term2">2、填写认证信息</div>
+            <div class="end process-term" id="end2"></div>
+            <div class="process-term" id="process-term3">3、认证申请成功</div>
+            <div class="end process-term" id="end3"></div>
+        </div>
+        <div class="finish" id="finish">
+            <h1>提交成功，请等待审核........</h1>
+        </div>
+        <div class="info-table" id="certificate-info">
+            <div class="inf">
+            <form action="#" method="post">
+                <div class="tablerow">
+                    <p>最高学历:</p>
+                    <p>
+                        <input type="text" name="name">
+                    </p>
+                </div>
+                <div class="tablerow">
+                    <p>所学专业:</p>
+                    <p>
+                        <input type="text" name="name">
+                    </p>
+                </div>
+                <div class="tablerow">
+                    <p>所属单位:</p>
+                    <p>
+                        <input type="text" name="name">
+                    </p>
+                </div>
+                <div class="tablerow">
+                    <p>研究领域:</p>
+                    <p>
+                        <input type="text" name="name">
+                    </p>
+                </div>
+                <div  class="tablerow">
+                    <p>
+                        证明：
+                        <!--<input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>
+                        <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>-->
+                    </p>
+                    <p>
+                        <input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+                    </p>
 
-		<!-- start content -->
-		<div id="content">
-			<div class="flower"></div>
-			<div class="post">
-				<h1 class="title"><a>认证申请</a></h1>
-				<div class="entry">
-						<form action="" id="auth_form">
-  							<p>姓名: <input type="text" name="fname" id="p_name" required/></p>
-							<p>身份证号: <input type="text" id="p_id" required></p>
-							<p>个人描述: </p>
-                            <p><textarea name="fdescription" rows="5" cols="40" id="description" required></textarea></p>
-                            <p>附加资料:
-                            <input type="file" name="file" id="files" multiple="multiple"/></p>
-  							<input type="submit" value="上传" />
-                            <!--这里可以限定 甚至可以做一个预览-->
-						</form>		
-				</div>
-			</div>
-		</div>
-		<!-- end content -->
-		<!-- start sidebars -->
-		
-		<!-- end sidebars -->
-		<div style="clear: both;">&nbsp;</div>
-	</div>
+                </div>
+                <div class="tablerow">
+                    <p></p>
+                    <p id="xmTanDiv" >
+                        <img id="xmTanImg" style="width: 150px; height: 100px;">
+                    </p>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="info-table" id="basic-info">
+            <div class="inf">
+         <form action="#" method="post">
+        <div class="tablerow">
+            <p>昵称:</p>
+            <p>
+                <input type="text" name="name">
+            </p>
+        </div>
+        <div class="tablerow">
+            <p>真实姓名:</p>
+            <p>
+                <input type="text" name="name">
+            </p>
+        </div>
+        <div class="tablerow">
+            <p>身份证号码:</p>
+            <p>
+                <input type="text" name="name">
+            </p>
+        </div>
+        <div class="tablerow">
+            <p>联系电话:</p>
+            <p>
+                <input type="text" name="education">
+            </p>
+        </div>
+        <div class="tablerow">
+            <p>邮箱:</p>
+            <p>
+                <input type="text" name="job_title">
+            </p>
+        </div>
+    </form>
+     </div>
+    </div>
+    <div class="btn">
+        <div>
+            <button class="group-btn" id="btn3" value="1" class="btn btn-primary btn-lg" onclick="back()">上一步</button>
+            <button class="group-btn" id="btn1" value="1" class="btn btn-primary btn-lg" onclick="next()">下一步</button>
+            <button class="group-btn" id="btn2" value="1" class="btn btn-primary btn-lg" onclick="next()">完成</button>
+            <button class="group-btn" id="btn4" value="1" class="btn btn-primary btn-lg"><a href="index.html">返回首页</a></button>
+        </div>
+    </div>
+    </div>
 	<!-- end page -->
-</div>
-</div>
-<div id="footer">
-<div id="footer-bg">
-	<p class="copyright">&copy;&nbsp;&nbsp;2018 All Rights Reserved &nbsp;&bull;&nbsp; Design by <a href="http://www.freecsstemplates.org/">MorSaK</a>.</p>
-	<p class="link"><a href="#">Privacy Policy</a>&nbsp;&#8226;&nbsp;<a href="#">Terms of Use</a></p>
-</div>
-</div>
+    <div id="footer">
+        <div id="footer-bg">
+            <p class="copyright">&copy;&nbsp;&nbsp;2018 All Rights Reserved &nbsp;&bull;&nbsp; Design by MorSaK</p>
+        </div>
+    </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -65,3 +277,4 @@
 <script src="js/cookie_helper.js"></script>
 <script src="js/confirm.js"></script>
 </body>
+</html>

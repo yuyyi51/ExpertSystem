@@ -3,65 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>处理认证</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link type="text/css" href="css/certificate.css" rel="stylesheet">
 </head>
 <body>
-<div class="head">
-    <h1><a href="index.html">科技资源共享平台</a></h1>
-    <!-- 可以通过点击这里返回首页-->
-    <br/>
-    <ul class="function">
-        <li>
+<div>
+    <div class="head">
+        <div id="logo">
+                <span>
+                科技资源分享平台
+                </span>
+        </div>
+        <div id="search">
             <form action="search_result.html">
-                <input type="text" class="search-content" name="content" placeholder="请输入您想要搜索内容"  />
-                <input type="submit" value="搜索" class="search-btn" />
+                <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
+                <input type="submit" value="搜&nbsp;&nbsp;索" class="search-btn" />
             </form>
-        </li>
-    </ul>
-    <ul>
-        <li>
-            <a href="index.html">返回首页</a>
-        </li>
-        <li>
-            <a href="#">个人中心</a>
-        </li>
-        <li>
-            <a href="">管理资源</a>
-        </li>
-        <li>
-            <a href="feedbackhandle.html">处理反馈</a>
-        </li>
-        <li>
-            <a href="Login.html">退出登录</a>
-        </li>
-    </ul>
-</div>
-<div class="container">
-    <div class="search-result">
-        <h1 class="handdleh1">认证处理中心</h1>
-        <br/>
-        <table border="1" class="interface">
-            <th>
-                <tr>
-                    <td class="number" bgcolor="cornflowerblue">序号</td>
-                    <td class="username" bgcolor="cornflowerblue">用户名</td>
-                    <td class="realname" bgcolor="cornflowerblue">申请人姓名</td>
-                    <td class="id_number" bgcolor="cornflowerblue">身份证号</td>
-                    <td class="description" bgcolor="cornflowerblue">个人描述</td>
-
-                    <td class="operation" bgcolor="#6495ed">操作</td>
-                </tr>
-            </th>
-        </table>
+        </div>
+    </div>
+    <div id="top_bar">
+        <div id="page_name" class="display">
+            认证详情
+        </div>
+        <div class="display" id="bar">
+            <ul class="function">
+                <li class="display"><a href="index.html">主页</a></li>
+                <!--<li class="display"><a href="Login.html">登录</a></li>
+                <li class="display"><a href="Register.html">注册</a></li>-->
+            </ul>
+        </div>
     </div>
 </div>
-<div>
+<div class="cut_line">
+    <p></p>
+</div>
+<div class="main">
+    <div class="main_body">
+        <div class="intro">
+            <p>申请人资料</p>
+        </div>
+    </div>
+    <div class="underline">
+    </div>
+    <div class="info-table">
+        <form action="#" method="post">
+            <div class="tablerow">
+                <p>姓名:</p>
+                <p>
+                    <input type="text" name="name" readonly>
+                </p>
+            </div>
+            <div class="tablerow">
+                <p>身份证号:</p>
+                <p>
+                    <input type="text" name="education" readonly>
+                </p>
+            </div>
+            <div class="tablerow" id="brief">
+                <p>个人描述:</p>
+                <p aria-colspan="3">
+                    <textarea name="bried_introduction" readonly></textarea>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="btn_group">
+    <!--TODO: 修改购买积分的跳转页面-->
+    <button id="btn1" class="btn btn-primary btn-lg" >通过</button><!--购买之后 display:none!-->
+    <button id="btn2" class="btn btn-primary btn-lg">否决</button>
+</div>
+<!--<div>
     <table border="1" class="table" id="result">
         <th>
 
         </th>
     </table>
-</div>
+</div>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>

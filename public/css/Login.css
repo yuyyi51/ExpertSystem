@@ -1,21 +1,29 @@
 
 body{
 margin: 0;
-background: rgba(0, 162, 255, 0.904);
+/*background: rgba(0, 162, 255, 0.904);*/
 background-size: cover;
+    background-image: url("../img/desktop.jpg");
 
 }
-.loginform{
+
+.main{
+    width: 490px;
+    margin: 0 auto;
+    margin-top: 13%;
+    opacity: 0.9;
+}
+/*.loginform{
     position: relative;
     top: 50px;
     left: 15px;
-    
-}
+
+}*/
 .Loginbox{
     background-color:white;
-    position: absolute;
+    /*position: absolute;
     top:  200px;
-    left: 310px;
+    left: 310px;*/
     width: 480px;
     height: 340px;
     border: 1px solid rgba(0, 162, 255, 0.904);
@@ -24,71 +32,88 @@ background-size: cover;
     margin: 2px;
 }
 .loginh1{
-    position: relative;
+    /*position: relative;
     bottom:10px;
-    left: 20px;
+    left: 20px;*/
     font-size: 40px;
     padding: 2px 0;
     margin-bottom: 2px ;
 	font-weight: bold;
 	text-align: left;
+    margin-left: 20px;
     color:rgb(238, 77, 13);
 
 }
 .textbox{
-    position: relative;
+    /*position: relative;
     bottom: 10px;
-    right: 100px;
+    right: 100px;*/
     width: 450px;
-    height: 30px;
+    /*height: 30px;*/
     font-size: 15px;
     padding: 15px ;
     margin: 20px 1px;
-    text-align: right;
+    /*text-align: right;*/
+    text-align: center;
+    /*border: 1px solid red;*/
 
 }
 
 .regis{
-position: absolute;
+/*position: absolute;
 top: 520px;
 left: 630px;
     font-size: 13px;
     padding: 5px 1px;
     margin: 15px 1px;
-    text-align: right;
+    text-align: right;*/
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 13px;
+    margin-left: 20px;
 }
 .back{
-position: absolute;
+/*position: absolute;
 top: 570px;
-left: 350px;
-font-size: 13px;
+left: 350px;*/
+    /*vertical-align: bottom;*/
+    margin-top: 10px;
+    font-size: 13px;
+    padding-left: 20px;
+    /*border: 1px solid red;*/
 }
 .btn {
-    position: relative;
+    /*position: relative;
     top: 70px;
-    left: 135px;
+    left: 135px;*/
+    padding: 10px 20px;
     background-color: rgb(238, 77, 13); 
-    border: none;
+    border: 2px solid red;
     color: white;
-    padding: 15px 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    margin-left: 35%;
     font-size: 20px;
     border-radius: 6px
     
 }
 input[type=text], select, textarea {
-    width: 50%;
+    width: 220px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    resize: vertical;
+    /*resize: vertical;*/
 }
 input[type=password], select, textarea {
-    width: 50%;
+    width: 220px;
     padding: 10px;
+   /* margin-left: 10px;*/
     border: 1px solid #ccc;
     border-radius: 8px;
-    resize: vertical;
+    /*resize: vertical;*/
+}
+
+.password{
+    margin-left: 16px;
 }
