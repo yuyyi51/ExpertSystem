@@ -41,38 +41,69 @@ function timeFormatter(value) {
 
 function new_result(data){
     /*
-    <ul class="content">
-        <li class="name">
-            <a href="detail.html">这里放题目名称</a>
-        </li >
-        <li class="author">
-            作者在这
-        </li>
-        <li class="time">
-            发表时间
-        </li>
-    </ul>
+    <div class="result-term">
+            <div>
+                <h2>人工智能原理</h2>
+                <p>
+                    <span class="author">石纯</span>---<span class="date">1993</span>---<span class="quote">被引量：</span><span class="quote_num">793</span>
+                </p>
+                <p class="summary">
+                    首先对第4届"智能系统在电力系统中的应用"国际会议发表的全部论文做了介绍,之后概述了近几年来较受关注的分布式人工智能技术、粗糙集理论
+                </p>
+            </div>
+            <div class="filed">
+                <div class="filed-term">人工智能</div>
+            </div>
+        </div>
      */
-    let u = document.createElement('ul');
-    u.className = 'content';
-    let l1 = document.createElement('li');
-    l1.className = 'name';
+    let div1 = document.createElement("div");
+    div1.className = "result-term";
+    let div2 = document.createElement("div");
+    let h2 = document.createElement("h2");
     let a = document.createElement('a');
-    a.href = "detail.html?id="+data.resource_id;
-    a.target = '_Blank';
+    a.href = "detail.html?id=" + data._id;
     a.innerHTML = data.title;
-    l1.append(a);
-    let l2 = document.createElement('li');
-    l2.className = 'author';
-    l2.innerHTML = data.username;
-    let l3 = document.createElement('li');
-    l3.className = 'time';
-    l3.innerHTML = timeFormatter(data.upload_time);
-    //l3.innerHTML = String( new Date(data.upload_time)).split(' GM')[0];
-    u.append(l1);
-    u.append(l2);
-    u.append(l3);
-    return u;
+    h2.appendChild(a);
+    div2.appendChild(h2);
+    let p1 = document.createElement("p");
+    let span1 = document.createElement("span");
+    span1.className = "author";
+    let authors = "" ;
+    for (let i = 0 ; i < data.authors.length && i < 5 ; ++i){
+        authors += data.authors[i].name;
+        if (i+1 < data.authors.length)
+            authors += ", ";
+    }
+    span1.innerHTML = authors;
+    p1.appendChild(span1);
+    p1.innerHTML += "---";
+    let span2 = document.createElement("span");
+    span2.className = "date";
+    span2.innerHTML = data.year;
+    p1.appendChild(span2);
+    p1.innerHTML += "---";
+    p1.innerHTML += "<span class=\"quote\">被引量：</span>";
+    p1.innerHTML += "</span><span class=\"quote_num\">" + (data.refered || 0) + "</span>";
+    let p2 = document.createElement("p");
+    p2.className = "summary";
+    if (data.abstract !== undefined)
+        p2.innerHTML = data.abstract.substring(0,250) + "...";
+    else
+        p2.innerHTML = "暂无";
+    div2.appendChild(p1);
+    div2.appendChild(p2);
+    let div3 = document.createElement("div");
+    div3.className = "filed";
+    if (data.keywords !== undefined)
+        for (let i = 0 ; i < data.keywords.length && i < 5 ; ++i) {
+            let div4 = document.createElement("div");
+            div4.innerHTML = data.keywords[i];
+            div4.className = "filed-term";
+            div3.appendChild(div4);
+        }
+    div1.appendChild(div2);
+    div1.appendChild(div3);
+    return div1;
 }
 
 socket.on('user:login', (res) => {
@@ -94,17 +125,27 @@ socket.on('func:search', (res) => {
     }
 });
 
+socket.on('func:search_new', (res) => {
+    console.log(res);
+    for (let i = 0; i < res.length; ++i){
+        $$('result').append(new_result(res[i]));
+    }
+});
+
 if (getUrlParms('content') === null) {
     window.location.href = '/';
     throw new Error();
 }
 
 let search_request = {};
-search_request.keywords = split_with_spaces(clearString(getUrlParms('content')));
+search_request.keywords = clearString(getUrlParms('content'));
 getUrlParms('page') === null ? search_request.page = 1 : search_request.page = getUrlParms('page');
 
 console.log(search_request);
-socket.emit('func:search', search_request);
+socket.emit('func:search_new', {
+    keywords: search_request.keywords,
+    page: search_request.page
+});
 
 authinfo = {
     user : cookie_helper.getCookie(user_cookie_name),

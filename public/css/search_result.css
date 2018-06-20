@@ -177,7 +177,7 @@ h2{
 }
 
 .filed{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 
@@ -185,6 +185,8 @@ h2{
     display: inline-block;
     border: 1px solid #407fff;
     color: #407fff;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .Pagenumber{

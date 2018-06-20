@@ -303,6 +303,11 @@ io.on('connection',(socket) => {
             socket.emit('func:search', res);
         });
     });
+    socket.on('func:search_new', (data) => {
+        mongodb.search(data.keywords, (data.page-1)*10, 10, (res) => {
+            socket.emit('func:search_new', res);
+        });
+    });
     socket.on('func:detail', (id) => {
         db.select_file(id, (res) => {
             db.get_username_by_id(res.uploader, (res2) => {
@@ -331,6 +336,11 @@ io.on('connection',(socket) => {
             socket.emit('func:get_5_day_purchase', res);
         });
     });
+    socket.on('func:get_refer', (id) => {
+        mongodb.get_refer_by_id(id, (res) => {
+            socket.emit('func:get_refer', res);
+        });
+    });
     socket.on('expert:upload', (data) => {
         let base = data.base64 ;
         let uname = data.uploader ;
@@ -340,6 +350,16 @@ io.on('connection',(socket) => {
                 socket.emit('expert:upload', false);
                 return ;
             }
+            let mongojson = {
+                title: data.title,
+                abstract: data.description,
+                point: data.point,
+                size: data.size,
+                sqlid: res,
+                keywords: [data.keywords],
+                authors: [data.uploader],
+                copyright: 1
+            };
             let filename = res ;
             let filebuffer = new Buffer(base, 'base64');
             let wstream = fs.createWriteStream(config.file_path + filename, {
