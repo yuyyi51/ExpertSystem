@@ -51,19 +51,31 @@
             <div class="tablerow">
                 <p>姓名:</p>
                 <p>
-                    <input type="text" name="name" readonly>
+                    <input type="text" name="name" readonly id="p_name">
                 </p>
             </div>
             <div class="tablerow">
                 <p>身份证号:</p>
                 <p>
-                    <input type="text" name="education" readonly>
+                    <input type="text" name="education" readonly id="p_id">
+                </p>
+            </div>
+            <div class="tablerow">
+                <p>研究领域:</p>
+                <p>
+                    <input type="text" name="education" readonly id="foc">
+                </p>
+            </div>
+            <div class="tablerow">
+                <p>所属机构:</p>
+                <p>
+                    <input type="text" name="education" readonly id="org">
                 </p>
             </div>
             <div class="tablerow" id="brief">
                 <p>个人描述:</p>
                 <p aria-colspan="3">
-                    <textarea name="bried_introduction" readonly></textarea>
+                    <textarea name="bried_introduction" readonly id="des"></textarea>
                 </p>
             </div>
         </form>
@@ -71,8 +83,9 @@
 </div>
 <div class="btn_group">
     <!--TODO: 修改购买积分的跳转页面-->
-    <button id="btn1" class="btn btn-primary btn-lg" >通过</button><!--购买之后 display:none!-->
+    <button id="btn1" class="btn btn-primary btn-lg" >通过</button>
     <button id="btn2" class="btn btn-primary btn-lg">否决</button>
+    <button id="btn3" class="btn btn-primary btn-lg" >下载文件</button>
 </div>
 <!--<div>
     <table border="1" class="table" id="result">

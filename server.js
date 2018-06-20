@@ -395,28 +395,43 @@ io.on('connection',(socket) => {
             socket.emit('admin:get_auth_request', res);
         });
     });
-    socket.on('admin:accept_request', (id,name,fn) => {
+    socket.on('admin:accept_request', (id,name) => {
         db.certificate_pass(id,name,(res)=>{
-            if(res) {
-                log("成功提升用户"+name+"成为专家用户");
-                fn(true);
-            }
-            else {
+            if(!res) {
                 log("未能提升用户"+name+"成为专家用户");
-                fn(false);
+                socket.emit('admin:accept_request', false);
+                return;
             }
+            mongodb.accept_cert(id, (res) => {
+                if(!res) {
+                    log("未能提升用户"+name+"成为专家用户");
+                    socket.emit('admin:accept_request', false);
+                    return;
+                }
+                else
+                {
+                    log("成功提升用户"+name+"成为专家用户");
+                    socket.emit('admin:accept_request', true);
+                    return;
+                }
+            });
         });
     });
-    socket.on('admin:reject_request', (id,name,fn) => {
+    socket.on('admin:reject_request', (id,name) => {
         db.certificate_refuse(id,(res)=>{
             if(res) {
                 log("成功拒绝用户"+name+"的认证申请");
-                fn(true);
+                socket.emit('admin:reject_request', false);
             }
             else {
                 log("未能拒绝用户"+name+"的认证申请");
-                fn(false);
+                socket.emit('admin:reject_request', false);
             }
+        });
+    });
+    socket.on('admin:get_mongo_ar', (id) => {
+        mongodb.get_cert(id, (res) => {
+            socket.emit('admin:get_mongo_ar', res);
         });
     });
 });

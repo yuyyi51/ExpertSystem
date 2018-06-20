@@ -4,6 +4,8 @@ let authinfo;
 let user_cookie_name = 'expert_system_username';
 let pwd_cookie_name = 'expert_system_password';
 let confirmed = false;
+let sqlid = null;
+let name = null;
 function logout(){
     authinfo = null ;
     cookie_helper.delCookie(user_cookie_name);
@@ -12,68 +14,11 @@ function logout(){
 }
 
 function createNewResult(data){
-    let tr = document.createElement('tr');
-    let td1 = document.createElement('td');
-    let td2 = document.createElement('td');
-    let td3 = document.createElement('td');
-    let td4 = document.createElement('td');
-    let td5 = document.createElement('td');
-    let td6 = document.createElement('td');
-    td1.style.width = '5%';
-    td1.innerHTML = data.request_id;
-    td2.style.width = '15%';
-    td2.innerHTML = data.username ;
-    td3.style.width = '15%';
-    td3.innerHTML = data.name;
-    td4.style.width = '15%';
-    td4.innerHTML = data.id_number;
-    td5.style.width = '30%';
-    td5.innerHTML = data.description;
-    td6.style.width = '20%';
-    let button1 = document.createElement('button');
-    button1.type = 'button';
-    button1.className = 'button1';
-    button1.innerHTML = '附加资料';
-    button1.onclick = () => {
-        window.location.href = '/download_cert?id=' + data.request_id;
-    };
-    let button2 = document.createElement('button');
-    button2.type = 'button';
-    button2.className = 'button1';
-    button2.innerHTML = '通过';
-    button2.onclick = () => {
-        socket.emit('admin:accept_request', data.request_id,data.username,(res)=>{
-            if(res) {
-                alert("成功提升用户"+data.username+"成为专家用户");
-                $$('result').removeChild(button2.parentNode.parentNode);
-            }
-            else alert("操作失败");
-        });
-    };
-    let button3 = document.createElement('button');
-    button3.type = 'button';
-    button3.className = 'button2';
-    button3.innerHTML = '拒绝';
-    button3.onclick = () => {
-        socket.emit('admin:reject_request', data.request_id,data.username,(res)=>{
-            if(res) {
-                alert("已经拒绝该申请");
-                $$('result').removeChild(button2.parentNode.parentNode);
-            }
-            else alert("操作失败");
-        });
-    };
-
-    td6.appendChild(button1);
-    td6.appendChild(button2);
-    td6.appendChild(button3);
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    tr.appendChild(td4);
-    tr.appendChild(td5);
-    tr.appendChild(td6);
-    $$('result').appendChild(tr);
+    $$('p_name').value = data.name;
+    $$('p_id').value = data.id_number;
+    $$('foc').value = data.foc[0];
+    $$('org').value = data.org[0];
+    $$('des').value = data.description;
 }
 
 function downloadFile(fileName, content){
@@ -87,6 +32,17 @@ function downloadFile(fileName, content){
     window.open(content);
 }
 
+$$('btn1').onclick = () => {
+    socket.emit('admin:accept_request', sqlid, name);
+};
+
+$$('btn2').onclick = () => {
+    socket.emit('admin:reject_request', sqlid, name);
+};
+
+$$('btn3').onclick = () => {
+    window.location.href = "/download_cert?id=" + sqlid;
+};
 
 socket.on('user:login', (res) => {
     if (res){
@@ -116,12 +72,23 @@ socket.on('func:check_privilege', (res) => {
 
 socket.on('admin:get_auth_request', (res) => {
     if (res === null){
+        alert("目前没有新的认证申请");
+        window.location.href = '/';
+        return;
+    }
+    sqlid = res.request_id;
+    console.log(res);
+    socket.emit('admin:get_mongo_ar', res.request_id);
+});
+
+socket.on('admin:get_mongo_ar', (res) => {
+    if (res === null){
         alert("获取认证申请信息失败，请稍后重试");
         return;
     }
-    for (let i = 0; i < res.length; ++i){
-        createNewResult(res[i]);
-    }
+    console.log(res);
+    name = res.user;
+    createNewResult(res);
 });
 
 socket.on('admin:accept_request', (res) => {
@@ -130,6 +97,7 @@ socket.on('admin:accept_request', (res) => {
     }
     else if (!res){
         alert("该申请已被处理");
+        window.location.reload();
     }
 });
 
@@ -139,6 +107,7 @@ socket.on('admin:reject_request', (res) => {
     }
     else if (!res){
         alert("该申请已被处理");
+        window.location.reload();
     }
 });
 

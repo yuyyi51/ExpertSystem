@@ -193,13 +193,16 @@ a:hover{
     /*margin-top: 15px;*/
 }
 .btn_group{
-    width: 180px;
+    width: 480px;
     margin: 15px auto;
 }
 
 #btn2{
     color: white;
     background: red;
+    margin-left: 30px;
+}
+#btn3{
     margin-left: 30px;
 }
 #head{
