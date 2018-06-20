@@ -1,7 +1,7 @@
 
 body{
   font-size: small;
- /*background-image: url("../img/restaurant.png");*/
+  /*background-image: url("../img/restaurant.png");*/
 }
 
 a{
@@ -202,38 +202,30 @@ input[type="text"]:focus{
 .tablerow p{
   display: table-cell;
   font-size: 1.2em;
-  vertical-align: top;
-  margin-left: 50px;
-  width: 200px;
- }
+  padding: 10px 20px;
+  width: 100%;
+  line-height: 20px;
+  vertical-align: center;
+  margin-top: 20px;
+}
+
 
 .tablerow p:first-child{
-  width: 100px;
+  padding-top: 10px;
+  width: 15%;
   text-align: right;
+  font-weight: bold;
+  vertical-align: top;
+}
+#education{
+  line-height: 1;
 }
 
-div.tablerow > .third{
-  text-align: right;
-  width: 100px;
-}
-.info-table input{
-  width: 200px;
-  border: none;
-}
-
-.info-table textarea{
-  width: 340px;
-  height: 150px;
-  border: none;
-}
-
-#brief p{
-  padding-top: 30px;
-}
 .intro p{
   font-size: 1.5em;
   padding-left: 10px;
   border-left: 4px solid #407fff;
+  font-weight: bold;
 }
 
 #table{

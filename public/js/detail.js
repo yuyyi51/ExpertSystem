@@ -256,7 +256,8 @@ function detail_load(result) {
         else $$('describe').innerHTML = "暂无";
     if (result.keywords !== undefined) {
         var keywords = "";
-        for (var i = 0; i < result.keywords.length; i++) {
+        var count = Math.min(result.keywords.length,10);
+        for (var i = 0; i < count; i++) {
             keywords = keywords + result.keywords[i].toString() + ";";
         }
         $$('keywords').innerHTML = keywords;
