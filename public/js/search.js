@@ -133,8 +133,8 @@ socket.on('func:search_new', (res) => {
 });
 
 if (getUrlParms('content') === null) {
-    //window.location.href = '/';
-    //throw new Error();
+    window.location.href = '/';
+    throw new Error();
 }
 
 let search_request = {};
