@@ -3,8 +3,10 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const sql = require('./lib/mysqlhelper');
+const mongo = require('./lib/mongohelper');
 const config = require('./lib/config');
 const db = new sql(config);
+const mongodb = new mongo(config);
 const SparkMD5 = require('spark-md5');
 const fs = require('fs');
 const cookie = require('cookie-parser');
@@ -307,6 +309,16 @@ io.on('connection',(socket) => {
                 res.uploader = res2 ;
                 socket.emit('func:detail', res);
             });
+        });
+    });
+    socket.on('func:detail_new', (id) => {
+        mongodb.get_paper_and_author(id, (res) => {
+            socket.emit('func:detail_new', res);
+        });
+    });
+    socket.on('func:expert_info', (id) => {
+        mongodb.get_author_info_by_id(id, (res) => {
+            socket.emit('func:expert_info', res);
         });
     });
     socket.on('func:check_privilege', (data) => {
