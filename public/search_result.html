@@ -28,8 +28,8 @@
         </div>
         <div id="search">
             <form action="search_result.html">
-                <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  />
-                <input type="submit" value="搜&nbsp;&nbsp;索" class="search-btn" />
+                <input type="text" class="search-content" name="content" placeholder="请输入搜索内容"  id="search_data"/>
+                <input type="button" value="搜&nbsp;&nbsp;索" class="search-btn" onclick="window.location.href = 'search_result.html?content='+document.getElementById('search_data').value"/>
             </form>
         </div>
         <!--<ul class="function">
