@@ -28,9 +28,9 @@ function introduction_load(result)
     if(result.foc !== undefined)
     {
         var major="";
-        for(var i=0;i<result.foc.length;i++)
+        for(var i=0;i<result.foc.length && i<10;i++)
         {
-            major += result.foc[i] + "; ";
+            major += result.foc[i] + "<br>";
         }
         $$('major').innerHTML = major;
     }

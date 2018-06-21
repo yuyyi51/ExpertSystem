@@ -92,20 +92,20 @@ socket.on('admin:get_mongo_ar', (res) => {
 });
 
 socket.on('admin:accept_request', (res) => {
-    if (res === null){
+    if (res === null || res === false){
         alert("系统错误，请稍后再试");
     }
-    else if (!res){
+    else if (res){
         alert("该申请已被处理");
         window.location.reload();
     }
 });
 
 socket.on('admin:reject_request', (res) => {
-    if (res === null){
+    if (res === null || res === false){
         alert("系统错误，请稍后再试");
     }
-    else if (!res){
+    else if (res){
         alert("该申请已被处理");
         window.location.reload();
     }
