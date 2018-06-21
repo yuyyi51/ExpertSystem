@@ -27,6 +27,12 @@ function clearString(s){
     return rs;
 }
 
+function logout() {
+    cookie_helper.delCookie(user_cookie_name);
+    cookie_helper.delCookie(pwd_cookie_name);
+    location.reload();
+}
+
 function split_with_spaces(s){
     return s.split(/[ ]+/);
 }

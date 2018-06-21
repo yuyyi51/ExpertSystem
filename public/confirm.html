@@ -118,7 +118,7 @@
                     <!--如果已登入 显示!-->
                     <a id="user" href="#"><span class="userid" id="username">用户名</span></a><!--跳转到用户页面!-->
                     <!--退出-->
-                    <a id="logout" href="#" onclick=""><span>退出</span></a><!--退出之后跳转到主页面!-->
+                    <a id="logout" href="#" onclick="logout()"><span>退出</span></a><!--退出之后跳转到主页面!-->
                 </div>
                 <!--</div>-->
             </div>
@@ -187,12 +187,12 @@
                 </div>
                 <div  class="tablerow">
                     <p>
-                        证明：
+                        证明资料：
                         <!--<input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>
                         <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>-->
                     </p>
                     <p>
-                        <input type="file" id="files"/>
+                        <input type="file" multiple="multiple" id="files"/>
                     </p>
 
                 </div>

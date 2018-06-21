@@ -11,6 +11,11 @@ function load(path, fn){
     };
     reader.readAsDataURL(path);
 }
+function logout() {
+    cookie_helper.delCookie(user_cookie_name);
+    cookie_helper.delCookie(pwd_cookie_name);
+    location.reload();
+}
 
 function load_next(files, pos, result ,fn){
     if (pos >= files.length){
@@ -31,6 +36,9 @@ function load_next(files, pos, result ,fn){
 socket.on('user:login', (res) => {
     if (res){
         //登录成功
+        $$('login').style.visibility = 'hidden';
+        $$('signup').style.visibility = 'hidden';
+        $$('username').innerHTML = authinfo.user ;
     }
     else {
         cookie_helper.delCookie(user_cookie_name);

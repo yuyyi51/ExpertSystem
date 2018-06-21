@@ -92,6 +92,7 @@ socket.on('admin:get_mongo_ar', (res) => {
 });
 
 socket.on('admin:accept_request', (res) => {
+    console.log(res);
     if (res === null || res === false){
         alert("系统错误，请稍后再试");
     }
