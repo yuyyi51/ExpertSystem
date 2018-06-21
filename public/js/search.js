@@ -123,6 +123,8 @@ socket.on('user:login', (res) => {
         //失败
         cookie_helper.delCookie(user_cookie_name);
         cookie_helper.delCookie(pwd_cookie_name);
+        $$('user').parentNode.removeChild($$('user'));
+        $$('logout').parentNode.removeChild($$('logout'));
     }
 });
 
@@ -166,6 +168,8 @@ if (authinfo.user === null || authinfo.password === null)
     authinfo = null ;
     cookie_helper.delCookie(user_cookie_name);
     cookie_helper.delCookie(pwd_cookie_name);
+    $$('user').parentNode.removeChild($$('user'));
+    $$('logout').parentNode.removeChild($$('logout'));
 }
 else
 {
