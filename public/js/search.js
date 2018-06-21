@@ -109,6 +109,9 @@ function new_result(data){
 socket.on('user:login', (res) => {
     if (res){
         //登录成功
+        $$('login').style.visibility = 'hidden';
+        $$('signup').style.visibility = 'hidden';
+        $$('username').innerHTML = authinfo.user ;
     }
     else {
         //失败

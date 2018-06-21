@@ -334,6 +334,11 @@ io.on('connection',(socket) => {
             socket.emit('func:get_refer', res);
         });
     });
+    socket.on('func:get_expert_intro', (id) => {
+        mongodb.get_expert_intro(id , (res) => {
+            socket.emit('func:get_expert_intro', res);
+        })
+    });
     socket.on('expert:upload', (data) => {
         let base = data.base64 ;
         let uname = data.uploader ;

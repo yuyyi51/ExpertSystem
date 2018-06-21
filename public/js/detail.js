@@ -198,7 +198,7 @@ socket.on('func:get_5_day_purchase', (res) => {
 
 
 
-if (getUrlParms('id') === null){
+if (getUrlParms('id') === null || getUrlParms('id') === ""){
     alert("参数错误");
     window.location.href = '/error';
     throw new Error("参数错误");
@@ -258,7 +258,7 @@ function detail_load(result) {
         var keywords = "";
         var count = Math.min(result.keywords.length,10);
         for (var i = 0; i < count; i++) {
-            keywords = keywords + result.keywords[i].toString() + ";";
+            keywords = keywords + result.keywords[i].toString() + "; ";
         }
         $$('keywords').innerHTML = keywords;
     }
@@ -302,7 +302,7 @@ socket.on('func:detail_new', (res) => {
             }
             else
             {
-                window.location.href = res.url[0];
+                window.open(res.url[0]);
             }
         };
         $$('btn4').onclick = () => {
@@ -313,7 +313,7 @@ socket.on('func:detail_new', (res) => {
             }
             else
             {
-                window.location.href = res.url[0];
+                window.open(res.url[0]);
             }
         };
     }
