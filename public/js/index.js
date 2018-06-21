@@ -29,7 +29,12 @@ socket.on('user:login', (res) => {
         $("#user_func").empty();
     }
 });
-
+socket.on('expert:get_author_id', (res) => {
+    window.location.href = "introduction.html?id="+res;
+});
+function user_info(){
+    socket.emit('expert:get_author_id', authinfo.user);
+}
 socket.on('func:check_privilege', (res) => {
     if (res === 1){
         //专家
@@ -42,8 +47,8 @@ socket.on('func:check_privilege', (res) => {
         l1.append(a1);
         let l2 = document.createElement("li");
         let a2 = document.createElement("a");
-        //TODO: 确定修改个人页面的连接
         a2.href = "#";
+        a2.onclick = user_info;
         a2.innerHTML = "个人页面";
         l2.append(a2);
         $$("user_func").append(l1);

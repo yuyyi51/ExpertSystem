@@ -48,8 +48,8 @@ function introduction_load(result)
     }
     else
         $$('talent_category').innerHTML = "暂无";
-    if(result.intro !== undefined)
-        $$('bried_introduction').innerHTML = result.intro;
+    if(result.description !== undefined)
+        $$('bried_introduction').innerHTML = result.description;
     else
         $$('bried_introduction').innerHTML = "暂无";
     resouce_list_load(result.papers);
@@ -73,6 +73,22 @@ function resouce_list_load(array)    //[{title:string, uptime:str}]
 socket.on('func:get_expert_intro', (res) => {
     //console.log(res);
     introduction_load(res);
+});
+socket.on('expert:get_author_id', (res) => {
+    console.log(res);
+    console.log(getUrlParms('id'));
+    if (res === getUrlParms('id')){
+        $$('change').style.visibility = 'visible';
+    }
+});
+socket.on('user:login', (res) => {
+    if (res){
+        socket.emit('expert:get_author_id', authinfo.user);
+    }
+    else {
+        cookie_helper.delCookie(user_cookie_name);
+        cookie_helper.delCookie(pwd_cookie_name);
+    }
 });
 
 if (getUrlParms('id') === null || getUrlParms('id') === ""){

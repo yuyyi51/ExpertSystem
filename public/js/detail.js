@@ -75,6 +75,8 @@ socket.on('user:login', (res) => {
     else {
         $$('user').parentNode.removeChild($$('user'));
         $$('logout').parentNode.removeChild($$('logout'));
+        cookie_helper.delCookie(user_cookie_name);
+        cookie_helper.delCookie(pwd_cookie_name);
     }
 });
 

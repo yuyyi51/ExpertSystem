@@ -92,7 +92,7 @@ body{
 
 #main{
 	margin-top: 100px;
-	margin-left: 18%;	
+	margin-left: 18%;
 }
 
 .date1{
@@ -102,8 +102,7 @@ border:1px solid red;
 }
 
 #info-detail{
-	margin-left: 20%;
-	margin-right: 200px;
+	margin-right: 20%;
 	border:1px solid black;
 	padding: 10px;
 	background-color: #f1f1f1;

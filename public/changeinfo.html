@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <title>个人资料</title>
     <link rel="stylesheet" href="css/changeinfo.css">
-	<script src="js/self_info.js" type="text/javascript"></script>
   </head>
   <body>
   	<div id="header">
         <div id="logo">
-        	<p>您好，艾则孜</p>
             <span id="title">科技资源分享平台</span>
         </div>
         <div id="navigation">
@@ -21,13 +19,6 @@
         </div> 
    	</div>
     <div id="main">
-    	<div id="menu">
-    		<p id="account">账户总览</p>
-            <ul>
-              <li><a href="self_info.html">个人信息</a></li>
-              <li><a href="res_manage.html">资源管理</a></li>
-            </ul>
-		</div> 
         <div id="info-detail">   
     		<h2>个人资料</h2>
     		<p id="line"></p>
@@ -35,106 +26,55 @@
         		<div class="tableRow">
              		<p>姓名: </p>
              		<p>
-                    	<input type="text" name="name" value="伊克巴尔·艾则孜" readonly>
+                    	<input type="text" name="name" value="" id="name">
                     </p>
         		</div>
          		<div class="tableRow">
-             		<p>性别:</p>
-             		<p>
-                    	<input type="radio" name="sex" value="男" checked="true" > 男
-                		<input type="radio" name="sex" value="女"> 女
-                    </p>
-         		</div>
-         		<div class="tableRow">
-            		<p>出生日期</p>
-            		<p>
-                    	<select onchange="setDays()"></select>
-            			<span>年</span>
-            			<select onchange="setDays()"></select>
-            			<span>月</span>
-            			<select>
-            			</select>
-            			<span>日</span>
-            		</p>
-		 		</div>
-         		<div class="tableRow">
              		<p>邮箱:</p> 
              		<p>
-                    	<input type="email" name="email" value="512768098@qq.com" >
+                    	<input type="email" name="email" value="" id="email">
                     </p>
          		</div>
          		<div class="tableRow">
              		<p>手机号码: </p>
              		<p>
-                    	<input type="tel" name="telephone" value="15811523868" >
+                    	<input type="tel" name="telephone" value="" id="phone">
                     </p>
          		</div>
-         		<div class="tableRow">
-            		<p>所在地：</p>
-            		<p>
-                    	<input type="text" name="address" value="中国" >
-                    </p>
-         		</div>
-         		<div class="tableRow">
-            		<p>职业：</p>
-            		<p>
-                    	<input type="text" name="work" value="学生" >
-                    </p>
-                </div>
-                <div class="tableRow">
-                    <p>最高学历:</p>
-                    <p>
-                      <input type="text" name="education" >
-                    </p>
-                </div>
-                <div class="tableRow">
-                    <p class="third">所学专业:</p>
-                    <p>
-                      <input type="text" name="major" >
-                    </p>
-                </div>
-                <div class="tableRow">
-                    <p>职称:</p>
-                    <p>
-                      <input type="text" name="job_title">
-                    </p>
-                </div>
-                <div class="tableRow">
-                    <p class="third">人才类别:</p>
-                    <p>
-                      <input type="text" name="talent_category" >
-                    </p>
-                </div>
                 <div class="tableRow">
                     <p>专业领域:</p>
                     <p>
-                      <input type="text" name="professional_field" >
+                      <input type="text" name="professional_field" id="foc">
                     </p>
                 </div>
                 <div class="tableRow">
-                    <p class="third">所属单位:</p>
+                    <p class="third">所属机构:</p>
                     <p>
-                      <input type="text" name="affiliation" >
-                    </p>
-                </div>
-                <div class="tableRow">
-                    <p>最熟悉的学科:</p>
-                    <p>
-                      <input type="text" name="major_subject">
+                      <input type="text" name="affiliation" id="org">
                     </p>
                 </div>
          		<div class="tableRow">
             		<p id="intro1">简介:</p>
             		<p><textarea name="comments" id="intro"></textarea></p>
          		</div>
+
     		</form>
             <div id="button">
-            	<p>
-                	<input type="submit" value="保存修改" class="submit1">
-               </p>
-       		</div>
+                <p>
+                    <input type="button" value="保存修改" class="submit1" id="btn">
+                </p>
+            </div>
     	</div>
   	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- this script is provided by socket.io at runtime -->
+    <script src="https://int-2.cn/script/spark-md5/spark-md5.min.js"></script>
+    <script src="js/cookie_helper.js"></script>
+  <script src="js/changeinfo.js"></script>
   </body>
 </html>
 

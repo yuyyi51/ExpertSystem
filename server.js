@@ -339,6 +339,16 @@ io.on('connection',(socket) => {
             socket.emit('func:get_expert_intro', res);
         })
     });
+    socket.on('expert:change_info', (username, info) => {
+        mongodb.change_info(username, info, (res) => {
+            socket.emit('expert:change_info', res !== null);
+        })
+    });
+    socket.on('expert:get_author_id', (username) => {
+        mongodb.get_expert_id(username, (res) => {
+            socket.emit('expert:get_author_id', res);
+        });
+    });
     socket.on('expert:upload', (data) => {
         let base = data.base64 ;
         let uname = data.uploader ;
