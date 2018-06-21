@@ -96,10 +96,15 @@ socket.on('expert:get_author_id', (res) => {
 socket.on('user:login', (res) => {
     if (res){
         socket.emit('expert:get_author_id', authinfo.user);
+        $$('login').style.visibility = 'hidden';
+        $$('signup').style.visibility = 'hidden';
+        $$('username').innerHTML = authinfo.user ;
     }
     else {
         cookie_helper.delCookie(user_cookie_name);
         cookie_helper.delCookie(pwd_cookie_name);
+        $$('user').parentNode.removeChild($$('user'));
+        $$('logout').parentNode.removeChild($$('logout'));
     }
 });
 
