@@ -42,6 +42,18 @@ function introduction_load(result)
     }
     else
         $$('job_title').innerHTML = "暂无";
+    if(result.phone !== undefined || result.phone === "")
+    {
+        $$('phone').innerHTML = result.phone;
+    }
+    else
+        $$('phone').innerHTML = "暂无";
+    if(result.email !== undefined || result.email === "")
+    {
+        $$('email').innerHTML = result.email;
+    }
+    else
+        $$('email').innerHTML = "暂无";
     if(result.refer !== undefined)
     {
         $$('talent_category').innerHTML = result.refer;
