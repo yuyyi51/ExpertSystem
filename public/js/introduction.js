@@ -12,6 +12,11 @@ function getUrlParms(name){
     return null;
 }
 
+function logout(){
+    cookie_helper.delCookie(user_cookie_name);
+    cookie_helper.delCookie(pwd_cookie_name);
+    location.reload();
+}
 
 function introduction_load(result)
 {
