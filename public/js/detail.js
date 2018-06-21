@@ -272,7 +272,7 @@ function refer_load(results){
     for (let i = 0 ; i < results.length ; ++i){
         var p = document.createElement('p');
         p.innerHTML = "<span class=\"ref-order\">[" + (i+1) + "]</span><span class=\"ref-title\"><a href='detail.html?id="+results[i]._id+"'>" + results[i].title + '.' +
-            (results[i].authors === undefined ? "" : results[i].authors[0] ) + '.' + (results[i].year || "") + "</a></span>";
+            (results[i].authors === undefined ? "" : results[i].authors[0].name ) + '.' + (results[i].year || "") + "</a></span>";
         $$('refer').appendChild(p);
     }
 }
