@@ -239,10 +239,11 @@ a:hover{
 
 .btn{
 	/*border: 1px solid red;*/
-	margin: 0px auto;
-	position: absolute;
+	/*position: absolute;
 	bottom: -70px;
-	left: 620px;
+	left: 620px;*/
+	margin-top: 50px;
+	margin-left: 250px;
 	width: 250px;
 	height: 40px;
 }
